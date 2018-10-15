@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "vector": "cpp"
+        "vector": "cpp",
+        "cstdlib": "cpp",
+        "algorithm": "cpp",
+        "limits": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp"
     }
 }

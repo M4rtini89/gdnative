@@ -1,5 +1,4 @@
-cd 
-call "C:\Users\m4rti\Anaconda3\Scripts\activate.bat" scons
-call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64     
+call "C:\Users\Martin\Anaconda3\Scripts\activate.bat" scons
+call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsx86_amd64.bat"   
 cd godot-cpp
-scons platform=windows target=release generate_bindings=yes use_custom_api_file=yes custom_api_file=../api.json
+call scons -j 12 platform=windows target=release generate_bindings=yes use_custom_api_file=yes custom_api_file=../api.json

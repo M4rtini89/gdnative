@@ -15,14 +15,14 @@ var height
 
 var astar = AStar.new()
 var path
-var iterations = 10000
+var iterations = 100
 
 func _ready():
 	init_map()
 	update_walkable_tiles()
-	#init_astar()
+	init_astar()
 	init_jps()
-	#find_astar_path()
+	find_astar_path()
 	find_jps_path()
 	move()
 
@@ -35,26 +35,27 @@ func find_jps_path():
 	var sprite_tile = tilemap.world_to_map(sprite.position)
 	var goal_tile = tilemap.world_to_map(goal.position)
 	
-	var _time_before = OS.get_ticks_msec()
+	var _time_before = OS.get_ticks_usec()
 	for i in range(iterations):
 		# (start_vector, end_vector, steps)
 		# Steps = 0 : only jump points
 		# Steps >0  : Return ever n steps between jump points
 		path = jps_instance.find_path(sprite_tile, goal_tile, 1)
-	var _timer_after = OS.get_ticks_msec()
+	#print(path)
+	var _timer_after = OS.get_ticks_usec()
 	var average_time = (_timer_after - _time_before) / float(iterations)
-	print("Average after %s iterations - JPS + A* used: %s ms" % [iterations, average_time])
+	print("Average after %s iterations - JPS + A* used: %s µs" % [iterations, average_time])
 
 func find_astar_path():
 	var sprite_tile = tilemap.world_to_map(sprite.position)
 	var goal_tile = tilemap.world_to_map(goal.position)
 	
-	var _time_before = OS.get_ticks_msec()
+	var _time_before = OS.get_ticks_usec()
 	for i in range(iterations):
 		path = astar.get_point_path(index(sprite_tile.x, sprite_tile.y), index(goal_tile.x, goal_tile.y))
-	var _timer_after = OS.get_ticks_msec()
+	var _timer_after = OS.get_ticks_usec()
 	var average_time = (_timer_after - _time_before) / float(iterations)
-	print("Average after %s iterations - Godot A* used: %s ms" % [iterations, average_time])
+	print("Average after %s iterations - Godot A* used: %s µs" % [iterations, average_time])
 
 func init_map():
 	var used_rect = tilemap.get_used_rect()
@@ -72,6 +73,12 @@ func update_walkable_tiles():
 
 func init_jps():
 	jps_instance.init_map(width, height, map)
+#	var check = false
+#	for i in range(5):
+#		for j in range(5):
+#			check = jps_instance.check_tile(Vector2(i,j))
+#			if check:
+#				print("(%s,%s)"%[i,j])
 
 func init_astar():
 	#Add points
