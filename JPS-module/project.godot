@@ -51,6 +51,13 @@ scroll_down={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Unit"
+2d_physics/layer_2="Wall"
+2d_physics/layer_3="Building"
+2d_physics/layer_4="Obstacle"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

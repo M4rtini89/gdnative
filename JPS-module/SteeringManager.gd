@@ -29,6 +29,8 @@ func _seek(target, arrive_distance):
 func flee(target, arrive_distance):
 	steering_force += _flee(target)
 
+func avoid_obstacle():
+	pass
 
 func _flee(target):
 	var desired_velocity = (host.position - target).normalized()

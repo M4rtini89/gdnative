@@ -21,10 +21,17 @@ func _ready():
 #	find_jps_path()
 
 func query_path(start, goal):
-	var path = jps_instance.find_path(start, goal, 1)
+	
+	var path = jps_instance.find_path(to_tile_cord(start), to_tile_cord(goal), 1)
+	for i in range(path.size()):
+		path[i] = to_world_cord(path[i])
 	return path
 
+func to_tile_cord(world_cord):
+	return tilemap.world_to_map(world_cord)
 
+func to_world_cord(tile_cord):
+	return tilemap.map_to_world(tile_cord) + tilemap.cell_size/2
 
 #func find_jps_path():
 #	var sprite_tile = tilemap.world_to_map(sprite.position)
