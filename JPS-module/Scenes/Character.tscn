@@ -6,16 +6,15 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 29.3059
+radius = 10.4985
 
-[node name="Character" type="RigidBody2D"]
+[node name="Boid" type="RigidBody2D"]
 position = Vector2( 129.322, 103.13 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
-mode = 0
+mode = 2
 mass = 1.0
-physics_material_override = null
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
@@ -28,17 +27,17 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-MAX_SPEED = 100
+MAX_SPEED = 25
 MAX_FORCE = 2.5
 ARRIVE_DISTANCE = 35
 DRAW_DEBUG = true
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
