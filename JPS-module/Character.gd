@@ -51,7 +51,7 @@ func update_seek_path():
 	if path_size == 0:
 		return
 	var distance_to_next = position.distance_to(seek_path[0])
-	if path_size == 1 and linear_velocity.length() < 1 and distance_to_next < 20:
+	if path_size == 1 and linear_velocity.length() < 1 and distance_to_next < 10:
 #		print(linear_velocity)
 		seek_path.remove(0)
 		return
@@ -59,7 +59,9 @@ func update_seek_path():
 #	if path_size > 0 and distance_to_next < linear_velocity.length()*0.25:
 #		seek_path.remove(0)
 	if seek_path.size() > 1:
-		LOS_simplify()
+#		LOS_simplify()
+		if (distance_to_next < 5):
+			seek_path.remove(0)
 
 
 func LOS_simplify():

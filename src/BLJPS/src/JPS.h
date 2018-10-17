@@ -37,7 +37,7 @@ class JPS : public PathFindingAlgorithm
 		}
 		Coordinate nextCoordinate(const Coordinate& c,const int dir)
 		{
-			static char dirMov[]={0,-1,1,-1,1,0,1,1,0,1,-1,1,-1,0,-1,-1,0,0};
+			static char dirMov[]={0,-1, 1,-1, 1,0, 1,1, 0,1, -1,1, -1,0, -1,-1, 0,0};
 			return Coordinate(c.x+dirMov[dir*2],c.y+dirMov[dir*2+1]);
 		}
 		int dirIsDiagonal (const int dir)
@@ -60,17 +60,38 @@ class JPS : public PathFindingAlgorithm
 			unsigned char dirs = 0;
 		#define ENTERABLE(n) isPassable ( nextCoordinate (coord, (dir + (n)) % 8))
 			if (dirIsDiagonal (dir)) {
-				if (!implies (ENTERABLE (6), ENTERABLE (5)))
-					dirs = addDirectionToSet (dirs, (dir + 6) % 8);
-				if (!implies (ENTERABLE (2), ENTERABLE (3)))
-					dirs = addDirectionToSet (dirs, (dir + 2) % 8);
+				// // if (!implies (ENTERABLE (6), ENTERABLE (5)))
+				// if (ENTERABLE(6) && !ENTERABLE(5))
+				// 	dirs = addDirectionToSet (dirs, (dir + 6) % 8);
+				// // if (!implies (ENTERABLE (2), ENTERABLE (3)))
+				// if (ENTERABLE(2) && !ENTERABLE(3))
+				// 	dirs = addDirectionToSet (dirs, (dir + 2) % 8);
 
 			}
 			else {
-				if (!implies (ENTERABLE (7), ENTERABLE (6)))
-					dirs = addDirectionToSet (dirs, (dir + 7) % 8);
-				if (!implies (ENTERABLE (1), ENTERABLE (2)))
-					dirs = addDirectionToSet (dirs, (dir + 1) % 8);
+				if (!ENTERABLE(3) && ENTERABLE(2))
+				{
+					dirs = addDirectionToSet (dirs, (dir + 2) % 8);
+					if (ENTERABLE(1) && ENTERABLE(0))
+					{
+						dirs = addDirectionToSet (dirs, (dir + 1) % 8);
+					}
+				}
+
+				if (!ENTERABLE(5) && ENTERABLE(6))
+				{
+					dirs = addDirectionToSet (dirs, (dir + 6) % 8);
+					if (ENTERABLE(7) && ENTERABLE(0))
+					{
+						dirs = addDirectionToSet (dirs, (dir + 7) % 8);
+					}
+				}
+				// // if (!implies (ENTERABLE (7), ENTERABLE (6)))
+				// if (ENTERABLE(7) && !ENTERABLE(6))
+				// 	dirs = addDirectionToSet (dirs, (dir + 7) % 8);
+				// // if (!implies (ENTERABLE (1), ENTERABLE (2)))
+				// if (ENTERABLE(1) && !ENTERABLE(2))
+				// 	dirs = addDirectionToSet (dirs, (dir + 1) % 8);
 			}		
 			#undef ENTERABLE	
 
@@ -123,6 +144,51 @@ class JPS : public PathFindingAlgorithm
 			}
 			return dirs;
 		}
+
+		unsigned char naturalNeighbours_no_corner_cut(const Coordinate &coord, const int dir)
+		{
+			#define ENTERABLE(n) isPassable ( nextCoordinate (coord, (dir + (n)) % 8))
+			unsigned char dirs = 0;
+			if (dir == NO_DIRECTION)
+			{
+				dirs = addDirectionToSet (dirs, 0);
+				dirs = addDirectionToSet (dirs, 2);
+				dirs = addDirectionToSet (dirs, 4);
+				dirs = addDirectionToSet (dirs, 6);
+				if (ENTERABLE(0) && ENTERABLE(2))
+				{
+					dirs = addDirectionToSet (dirs, 1);
+				}
+				if (ENTERABLE(2) && ENTERABLE(4))
+				{
+					dirs = addDirectionToSet (dirs, 3);
+				}
+				if (ENTERABLE(4) && ENTERABLE(6))
+				{
+					dirs = addDirectionToSet (dirs, 5);
+				}
+				if (ENTERABLE(6) && ENTERABLE(0))
+				{
+					dirs = addDirectionToSet (dirs, 7);
+				}
+				return dirs;
+			}
+
+			if (dirIsDiagonal (dir)) {
+				if (ENTERABLE(1) && ENTERABLE(7))
+				{
+					dirs = addDirectionToSet (dirs, dir);
+				}
+				dirs = addDirectionToSet (dirs, (dir + 1) % 8);
+				dirs = addDirectionToSet (dirs, (dir + 7) % 8);
+			}else {
+				dirs = addDirectionToSet (dirs, dir);
+			}
+			#undef ENTERABLE
+			return dirs;
+		}
+
+		
 		unsigned char nextDirectionInSet (unsigned char *dirs)
 		{
 			for (int i = 0; i < 8; i++) {
@@ -212,7 +278,8 @@ class JPS : public PathFindingAlgorithm
 			while (openListBh.Count())
 			{
 				Node* currentNode=openListBh.PopMax();
-				unsigned char dirs = forcedNeighbours (currentNode->pos, currentNode->dir)  | naturalNeighbours (currentNode->dir);
+				// unsigned char dirs = forcedNeighbours (currentNode->pos, currentNode->dir)  | naturalNeighbours (currentNode->dir);
+				unsigned char dirs = forcedNeighbours (currentNode->pos, currentNode->dir)  | naturalNeighbours_no_corner_cut (currentNode->pos, currentNode->dir);
 
 				for (int dir = 0; dir < 8; dir ++)
 				{

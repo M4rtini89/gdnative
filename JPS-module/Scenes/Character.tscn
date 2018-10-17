@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 2.0
+radius = 10.0
 
 [node name="Boid" type="RigidBody2D"]
 position = Vector2( 129.322, 103.13 )
@@ -35,11 +35,12 @@ ARRIVE_DISTANCE = 15
 DRAW_DEBUG = true
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+disabled = true
 _sections_unfolded = [ "shape" ]
 

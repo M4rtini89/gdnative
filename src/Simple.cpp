@@ -1,6 +1,6 @@
 #include "Simple.hpp"
-#include "JPS.h"
 #include "BLJPS/src/Astar.h"
+#include "BLJPS/src/JPS.h"
 #include "BLJPS/src/BL_JPS.h"
 #include "BLJPS/src/JPS_Plus.h"
 using namespace godot;
@@ -21,7 +21,8 @@ void Simple::init_map(int width, int height, PoolByteArray map_data)
 	mygrid = MyGrid(width, height, map_data);
 	mapgrid = MapGrid();
 	mapgrid.fillGrid(width, height, map_data);
-	pathFindingAlgorithm = new BL_JPS(mapgrid.gridData, width, height);
+	// pathFindingAlgorithm = new BL_JPS(mapgrid.gridData, width, height);
+	pathFindingAlgorithm = new JPS(mapgrid.gridData, width, height);
 	pathFindingAlgorithm->preProcessGrid();
 }
 

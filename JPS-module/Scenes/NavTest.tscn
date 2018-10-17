@@ -33,8 +33,6 @@ _sections_unfolded = [ "Cell" ]
 [node name="Boid" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 133.512, 97.5433 )
 _sections_unfolded = [ "Collision", "Transform" ]
-MAX_FORCE = 2
-ARRIVE_DISTANCE = 15
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )
