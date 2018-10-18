@@ -98,7 +98,9 @@ func _integrate_forces(state):
 	if close_boids.size() > 0:
 		#steering.align(close_boids, 100, 1)
 		steering.cohesion(close_boids, 40, 1)
-		steering.seperation(close_boids, 15, 1.5)
+		steering.seperation(close_boids, 15, 2)
+	if close_obstacles.size() > 0:
+		steering.seperation(close_obstacles, 40, 8)
 	steering.update(state)
 
 
@@ -119,10 +121,14 @@ func _draw():
 
 func _on_Area2D_body_entered(body):
 	if body != self:
-		close_boids.append(body)
-		print(body)
-		print(close_boids.size())
+		if body.get_collision_layer_bit(3):
+			close_obstacles.append(body)
+		else:
+			close_boids.append(body)
 
 
 func _on_Area2D_body_exited(body):
-	close_boids.erase(body)
+	if body.get_collision_layer_bit(3):
+		close_obstacles.erase(body)
+	else:
+		close_boids.erase(body)

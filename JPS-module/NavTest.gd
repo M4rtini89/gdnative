@@ -5,6 +5,8 @@ const Simple = preload("res://bin/simple.gdns")
 onready var jps_instance = Simple.new()
 
 onready var tilemap : TileMap = $TileMap
+onready var wall_collider = preload("res://Scenes/WallCollider.tscn")
+onready var walls = $walls
 
 var map = PoolByteArray()
 var width
@@ -70,7 +72,14 @@ func init_map():
 func update_walkable_tiles():
 	var tiles = tilemap.get_used_cells()
 	for tile in tiles:
-		set_cell(tile.x, tile.y, tilemap.get_cellv(tile))
+		var tile_id = tilemap.get_cellv(tile)
+		set_cell(tile.x, tile.y, tile_id)
+		if tile_id == 0:
+			var new_wall_collider = wall_collider.instance()
+			new_wall_collider.position = to_world_cord(tile)
+			walls.add_child(new_wall_collider)
+			new_wall_collider.owner = walls
+		
 
 
 func init_jps():
