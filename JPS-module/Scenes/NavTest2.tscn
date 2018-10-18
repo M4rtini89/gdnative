@@ -9,6 +9,19 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -6
 
 [node name="Boid" parent="Units" index="0"]
 position = Vector2( 24, 24 )
+DRAW_DEBUG = false
+
+[node name="Boid2" parent="Units" index="1"]
+DRAW_DEBUG = false
+
+[node name="Boid3" parent="Units" index="2"]
+DRAW_DEBUG = false
+
+[node name="Boid4" parent="Units" index="3"]
+DRAW_DEBUG = false
+
+[node name="Boid5" parent="Units" index="4"]
+DRAW_DEBUG = false
 
 [node name="Camera2D" parent="." index="2"]
 position = Vector2( 91.0897, 88.8884 )
