@@ -3,7 +3,7 @@ extends RigidBody2D
 export var MAX_SPEED = 50
 export var MAX_FORCE = 2
 export var ARRIVE_DISTANCE = 15
-export var DRAW_DEBUG = false
+export var DRAW_DEBUG = true
 export var LOS_WIDTH = 5
 
 var seek_path = [] 
@@ -100,7 +100,7 @@ func _integrate_forces(state):
 		steering.cohesion(close_boids, 40, 1)
 		steering.seperation(close_boids, 15, 2)
 	if close_obstacles.size() > 0:
-		steering.seperation(close_obstacles, 40, 8)
+		steering.seperation(close_obstacles, 30, 4)
 	steering.update(state)
 
 

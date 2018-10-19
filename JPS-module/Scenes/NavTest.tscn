@@ -35,30 +35,22 @@ _sections_unfolded = [ "Collision" ]
 [node name="Boid" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 221.207, 67.9677 )
 _sections_unfolded = [ "Collision", "Transform" ]
+DRAW_DEBUG = true
 
 [node name="Boid2" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 202.636, 77.597 )
+position = Vector2( 197.971, 70.1292 )
 _sections_unfolded = [ "Collision", "Transform" ]
+DRAW_DEBUG = true
 
 [node name="Boid3" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 193.695, 62.4653 )
+position = Vector2( 200.673, 46.8936 )
 _sections_unfolded = [ "Collision", "Transform" ]
+DRAW_DEBUG = true
 
 [node name="Boid4" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 206.419, 45.614 )
+position = Vector2( 170.413, 73.3713 )
 _sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="Boid5" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 146.924, 64.1848 )
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="Boid6" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 160.68, 90.6653 )
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="Boid7" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 252.846, 50.0848 )
-_sections_unfolded = [ "Collision", "Transform" ]
+DRAW_DEBUG = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )
