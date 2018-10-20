@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Units/boid.gd" type="Script" id=1]
 [ext_resource path="res://Units/GFX/selection-ring.png" type="Texture" id=2]
 [ext_resource path="res://Units/GFX/tank-blue.png" type="Texture" id=3]
+[ext_resource path="res://Units/State/BoidStateMachine.gd" type="Script" id=4]
+[ext_resource path="res://Units/Idle.gd" type="Script" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -50,6 +52,9 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable", "physics_material_override" ]
+__meta__ = {
+"_edit_group_": true
+}
 MAX_SPEED = 25
 MAX_FORCE = 4
 ARRIVE_DISTANCE = 15
@@ -76,6 +81,7 @@ shape = SubResource( 3 )
 _sections_unfolded = [ "shape" ]
 
 [node name="Area2D" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 0.11142, -0.139275 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -92,6 +98,16 @@ _sections_unfolded = [ "Collision" ]
 visible = false
 shape = SubResource( 4 )
 _sections_unfolded = [ "shape" ]
+
+[node name="BoidStateMachine" type="Node2D" parent="."]
+position = Vector2( 0.11142, -0.139275 )
+script = ExtResource( 4 )
+active = false
+
+[node name="Idle" type="Node2D" parent="BoidStateMachine"]
+script = ExtResource( 5 )
+
+[node name="Move" type="Node2D" parent="BoidStateMachine"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

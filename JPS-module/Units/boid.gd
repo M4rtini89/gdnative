@@ -22,6 +22,7 @@ var steering = preload("res://AI/SteeringManager.gd").new()
 
 onready var sprite = $Sprite
 onready var selection_ring = $SelectionVisual
+onready var state_machine = $BoidStateMachine
 
 var selected setget set_selected
 
@@ -32,6 +33,7 @@ func set_selected(value):
 func _ready():
 	steering.host = self
 	self.selected = false
+	state_machine.start()
 
 func _process(delta):
 	if DRAW_DEBUG:

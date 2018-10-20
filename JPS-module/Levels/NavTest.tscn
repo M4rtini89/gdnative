@@ -36,24 +36,6 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Boid" parent="Units" instance=ExtResource( 3 )]
 
-[node name="Boid2" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 143.665, 103.676 )
-
-[node name="Boid3" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 136.152, 114.468 )
-
-[node name="Boid4" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 122.219, 115.424 )
-
-[node name="Boid5" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 115.798, 103.676 )
-
-[node name="Boid6" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 120.853, 91.3821 )
-
-[node name="Boid7" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 135.879, 89.7429 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )
 anchor_mode = 1

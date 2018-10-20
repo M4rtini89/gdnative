@@ -36,7 +36,6 @@ func do_selection():
 	var self_rect = get_rect()
 	if self_rect.get_area():
 		self_rect = self_rect.grow(10)
-	print(self_rect)
 	for unit in get_tree().get_nodes_in_group("units"):
 		var unit_in_rect = self_rect.has_point(unit.get_global_transform_with_canvas().origin)
 		unit.selected = unit_in_rect
