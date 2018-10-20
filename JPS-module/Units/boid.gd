@@ -12,6 +12,7 @@ var close_obstacles = []
 
 
 var steering = preload("res://AI/SteeringManager.gd").new()
+signal new_path(path)
 
 onready var sprite = $Sprite
 onready var selection_ring = $SelectionVisual

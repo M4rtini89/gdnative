@@ -1,12 +1,13 @@
 extends "res://Utils/State/State.gd"
 
-export var PATH_SIMPLIFY_TIMER = 2
-export var OBSTACLE_RAYCAST_TIMER = 1
+const PATH_SIMPLIFY_TIMER = 2
+const OBSTACLE_RAYCAST_TIMER = 1
 
 var simplify_time = 0
 var raycast_timer = 0
 
 var los_obstacle = null
+
 var seek_path = [] 
 var steering 
 
