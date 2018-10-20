@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Units/boid.gd" type="Script" id=1]
+[ext_resource path="res://Units/GFX/selection-ring.png" type="Texture" id=2]
+[ext_resource path="res://Units/GFX/tank-blue.png" type="Texture" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+friction = 0.1
+rough = false
+bounce = 0.0
+absorbent = false
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+render_priority = 0
+blend_mode = 0
+light_mode = 0
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 40.0
+
+[node name="Boid" type="RigidBody2D" groups=[
+"units",
+]]
+position = Vector2( 129.322, 103.13 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 15
+mode = 2
+mass = 1.0
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "physics_material_override" ]
+MAX_SPEED = 25
+MAX_FORCE = 4
+ARRIVE_DISTANCE = 15
+DRAW_DEBUG = false
+LOS_WIDTH = 5
+
+[node name="SelectionVisual" type="Sprite" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+show_behind_parent = true
+material = SubResource( 2 )
+position = Vector2( -0.576691, 0.963783 )
+scale = Vector2( 0.0507561, 0.030959 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 3 )
+_sections_unfolded = [ "shape" ]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0.11142, -0.139275 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 9
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource( 4 )
+_sections_unfolded = [ "shape" ]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
