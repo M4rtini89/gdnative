@@ -7,7 +7,7 @@ extends Node
 
 signal finished(next_state_name)
 
-func enter():
+func enter(params=null):
 	return
 
 func exit():
@@ -17,6 +17,9 @@ func handle_input(event):
 	return
 
 func update(delta):
+	return
+
+func integrate_force(state):
 	return
 
 func _on_animation_finished(anim_name):

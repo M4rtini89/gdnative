@@ -35,6 +35,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Boid" parent="Units" instance=ExtResource( 3 )]
+MAX_FORCE = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )

@@ -43,7 +43,7 @@ func _on_animation_finished(anim_name):
 		return
 	current_state._on_animation_finished(anim_name)
 
-func _change_state(state_name):
+func _change_state(state_name, params=null):
 	if not active:
 		return
 	current_state.exit()
@@ -55,4 +55,4 @@ func _change_state(state_name):
 	
 	current_state = states_stack[0]
 	emit_signal("state_changed", current_state)
-	current_state.enter()
+	current_state.enter(params)

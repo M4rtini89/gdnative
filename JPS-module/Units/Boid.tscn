@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Units/boid.gd" type="Script" id=1]
 [ext_resource path="res://Units/GFX/selection-ring.png" type="Texture" id=2]
 [ext_resource path="res://Units/GFX/tank-blue.png" type="Texture" id=3]
 [ext_resource path="res://Units/State/BoidStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Units/Idle.gd" type="Script" id=5]
+[ext_resource path="res://Units/Move.gd" type="Script" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -56,9 +57,9 @@ __meta__ = {
 "_edit_group_": true
 }
 MAX_SPEED = 25
-MAX_FORCE = 4
+MAX_FORCE = 2
 ARRIVE_DISTANCE = 15
-DRAW_DEBUG = false
+DRAW_DEBUG = true
 LOS_WIDTH = 5
 
 [node name="SelectionVisual" type="Sprite" parent="."]
@@ -108,6 +109,9 @@ active = false
 script = ExtResource( 5 )
 
 [node name="Move" type="Node2D" parent="BoidStateMachine"]
+script = ExtResource( 6 )
+PATH_SIMPLIFY_TIMER = 2
+OBSTACLE_RAYCAST_TIMER = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
