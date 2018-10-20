@@ -110,6 +110,8 @@ script = ExtResource( 5 )
 
 [node name="Move" type="Node2D" parent="BoidStateMachine"]
 script = ExtResource( 6 )
+PATH_SIMPLIFY_TIMER = 2
+OBSTACLE_RAYCAST_TIMER = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
