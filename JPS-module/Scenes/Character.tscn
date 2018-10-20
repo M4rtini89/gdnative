@@ -1,7 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Character.gd" type="Script" id=1]
-[ext_resource path="res://png/Unit/scifiUnit_09.png" type="Texture" id=2]
+[ext_resource path="res://png/tunelring.png" type="Texture" id=2]
+[ext_resource path="res://png/Unit/scifiUnit_09.png" type="Texture" id=3]
+
+[sub_resource type="PhysicsMaterial" id=3]
+
+friction = 0.1
+rough = false
+bounce = 0.0
+absorbent = false
+
+[sub_resource type="CanvasItemMaterial" id=4]
+
+render_priority = 0
+blend_mode = 0
+light_mode = 0
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -13,14 +27,16 @@ radius = 6.0
 custom_solver_bias = 0.0
 radius = 40.0
 
-[node name="Boid" type="RigidBody2D"]
+[node name="Boid" type="RigidBody2D" groups=[
+"units",
+]]
 position = Vector2( 129.322, 103.13 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 15
 mode = 2
 mass = 1.0
-physics_material_override = null
+physics_material_override = SubResource( 3 )
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
@@ -33,23 +49,34 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Pickable", "physics_material_override" ]
 MAX_SPEED = 25
-MAX_FORCE = 2
+MAX_FORCE = 4
 ARRIVE_DISTANCE = 15
 DRAW_DEBUG = false
 LOS_WIDTH = 5
 
+[node name="SelectionVisual" type="Sprite" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+show_behind_parent = true
+material = SubResource( 4 )
+position = Vector2( -0.576691, 0.963783 )
+scale = Vector2( 0.0507561, 0.030959 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0.11142, -0.139275 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -62,6 +89,7 @@ audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource( 2 )
 _sections_unfolded = [ "shape" ]
 

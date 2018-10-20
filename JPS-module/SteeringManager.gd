@@ -67,19 +67,28 @@ func _cohesion(neighbours, cohesion_radius):
 
 
 func seperation(neighbours, seperation_radius, weight):
-	steering_force += _separation(neighbours, seperation_radius) * weight
+	steering_force += _separation(neighbours, seperation_radius*seperation_radius) * weight
 
 
-func _separation(neighbours, seperation_radius):
-	var desired_velocity = Vector2( 0, 0 )
+func _separation(neighbours, seperation_radius_square):
+	var desired_velocity = Vector2()
 	var neighbour_count = 0
 	for boid in neighbours:
 		var dist_vec = boid.position - host.position
-		var distance = host.position.distance_to(boid.position)
-		if distance < seperation_radius:
+		var distance_square = host.position.distance_squared_to(boid.position)
+		if distance_square < seperation_radius_square:
 			neighbour_count += 1
 			desired_velocity -= dist_vec
 	if neighbour_count > 0:
 		desired_velocity /= neighbour_count
 	return desired_velocity.normalized()
 
+func collision_avoidance(obstacle_position, weight):
+	steering_force += _collision_avoidance(obstacle_position) * weight
+
+
+func _collision_avoidance(obstacle_position):
+	var ahead = host.position + host.linear_velocity
+	var avoidance_force = ahead - obstacle_position
+	avoidance_force = avoidance_force.normalized()
+	return avoidance_force
