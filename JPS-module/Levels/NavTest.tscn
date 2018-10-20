@@ -35,7 +35,23 @@ _sections_unfolded = [ "Collision" ]
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Boid" parent="Units" instance=ExtResource( 3 )]
-MAX_FORCE = 2
+
+[node name="Boid2" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 153.458, 106.732 )
+
+[node name="Boid3" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 150.576, 89.8011 )
+
+[node name="Boid4" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 127.161, 85.118 )
+
+[node name="Boid5" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 138.688, 70.3482 )
+_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+
+[node name="Boid6" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 162.824, 68.9072 )
+_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )
