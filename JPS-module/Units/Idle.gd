@@ -6,14 +6,14 @@ var idle_pos = Vector2()
 func enter(params=null):
 	# TODO: Make it move out of the way for allied units. 
 	idle_pos = owner.position
-	owner.linear_damp = 2
+	owner.linear_damp = 4
 
 func exit():
 	owner.linear_damp = -1
-
-func update(delta):
-	if owner.position.distance_to(idle_pos) > IDLE_POS_RESEEK:
-		emit_signal('finished', 'move', [idle_pos])
+#
+#func update(delta):
+#	if owner.position.distance_to(idle_pos) > IDLE_POS_RESEEK:
+#		emit_signal('finished', 'move', [idle_pos])
 
 func _draw():
 	owner.draw_circle(idle_pos - owner.position, IDLE_POS_RESEEK, Color.blueviolet)
