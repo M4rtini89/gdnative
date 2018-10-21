@@ -1,5 +1,6 @@
 var steering_force = Vector2()
 var host : RigidBody2D
+var flock_center = Vector2()
 
 
 # Needs to be called in _integrate_forces of host
@@ -12,6 +13,7 @@ func update(state):
 # Reset the steering force
 func reset():
 	steering_force = Vector2()
+	flock_center = host.position
 
 func seek(target, arrive_distance, weight=1):
 	steering_force += _seek(target, arrive_distance) * weight
@@ -63,6 +65,7 @@ func _cohesion(neighbours, cohesion_radius):
 			neighbour_count += 1
 			center  += boid.position
 	center /= neighbour_count
+	flock_center = center
 	return (center - host.position).normalized()	
 
 

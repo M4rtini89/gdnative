@@ -15,7 +15,7 @@ func exit():
 #	if owner.position.distance_to(idle_pos) > IDLE_POS_RESEEK:
 #		emit_signal('finished', 'move', [idle_pos])
 
-func _draw():
-	owner.draw_circle(idle_pos - owner.position, IDLE_POS_RESEEK, Color.blueviolet)
-	owner.draw_line(Vector2(), owner.steering.steering_force*30, Color.red)
-	owner.draw_line(Vector2(), owner.linear_velocity, Color.green)
+#func _draw():
+#	owner.draw_circle(idle_pos - owner.position, IDLE_POS_RESEEK, Color.blueviolet)
+#	owner.draw_line(Vector2(), owner.steering.steering_force*30, Color.red)
+#	owner.draw_line(Vector2(), owner.linear_velocity, Color.green)

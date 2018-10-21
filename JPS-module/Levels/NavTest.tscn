@@ -35,63 +35,79 @@ _sections_unfolded = [ "Collision" ]
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Boid" parent="Units" instance=ExtResource( 3 )]
+DRAW_DEBUG = true
 
 [node name="Boid2" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 153.458, 106.732 )
+DRAW_DEBUG = true
 
 [node name="Boid3" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 150.576, 89.8011 )
+DRAW_DEBUG = true
 
 [node name="Boid4" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 127.161, 85.118 )
+DRAW_DEBUG = true
 
 [node name="Boid5" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 138.688, 70.3482 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid6" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 162.824, 68.9072 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid7" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 179.593, 62.7471 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid8" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 187.807, 80.543 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid9" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 192.598, 105.183 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid10" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 210.052, 90.1254 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid11" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 210.394, 70.2762 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid12" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 232.639, 58.2982 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid13" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 237.088, 80.2008 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid14" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 235.377, 102.103 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid15" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 221.003, 120.584 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Boid16" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 202.523, 129.824 )
 _sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+DRAW_DEBUG = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )

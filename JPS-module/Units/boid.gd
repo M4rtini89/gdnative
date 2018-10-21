@@ -3,7 +3,7 @@ extends RigidBody2D
 export var MAX_SPEED = 50
 export var MAX_FORCE = 2
 export var ARRIVE_DISTANCE = 10
-export var DRAW_DEBUG = false
+export var DRAW_DEBUG = true
 export var LOS_WIDTH = 5
 
 
@@ -69,16 +69,12 @@ func LOS_target_check(target, ray_width=LOS_WIDTH):
 	var ray_offset = ray_tangent * ray_width
 	
 	var space = get_world_2d().direct_space_state
-	
-	var raycast_res = _raycast_obstacles(space, target, ray_offset)
-	if raycast_res:
-		return raycast_res
-	# Another raycast with negative offset.
-	raycast_res = _raycast_obstacles(space, target, -ray_offset)
-	if raycast_res:
-		return raycast_res
-	else:
-		return null
+	var offsets = [Vector2(), -ray_offset, ray_offset]
+	for offset in offsets:
+		var raycast_res = _raycast_obstacles(space, target, offset)
+		if raycast_res:
+			return raycast_res
+	return null
 
 
 func _raycast_obstacles(space, target, offset):
