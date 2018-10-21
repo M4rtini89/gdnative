@@ -1,13 +1,15 @@
 extends "res://Utils/State/State.gd"
 
-const PATH_SIMPLIFY_TIMER = 2
-const OBSTACLE_RAYCAST_TIMER = 1
+export var PATH_SIMPLIFY_TIMER = 2
+export var OBSTACLE_RAYCAST_TIMER = 1
+export var GIVEUP_TIMER = 0.5
 
 var simplify_time = 0
+var giveup_timer = 0
 var raycast_timer = 0
+var state_timer = 0
 
 var los_obstacle = null
-
 var seek_path = [] 
 var steering 
 
@@ -15,9 +17,16 @@ var steering
 func enter(params=null):
 	steering = owner.steering
 	seek_path = params
+	simplify_time = 0
+	giveup_timer = 0
+	raycast_timer = 0
+	state_timer = 0
 
+func exit():
+	steering.reset()
 
 func update(delta):
+	state_timer += delta
 	update_seek_path(delta)
 	update_los_obstacle(delta)
 
@@ -27,26 +36,26 @@ func integrate_force(state):
 		state.linear_velocity = Vector2()
 		emit_signal('finished', 'idle')
 		return
-	steering.reset()
 	var path_size = seek_path.size()
 	if path_size == 0:
+		state.linear_velocity = Vector2()
 		emit_signal('finished', 'idle')
 		return
+	var active_close_boids = get_active_close_boids()
 	if path_size > 1:
-		steering.seek(seek_path[0], 0)
+		steering.seek(seek_path[0], 0, 2.5)
 	elif path_size > 0:
-		steering.seek(seek_path[0], owner.ARRIVE_DISTANCE)
+		steering.seek(seek_path[0], owner.ARRIVE_DISTANCE, 3)
 
-	if owner.close_boids.size() > 0:
-		steering.align(owner.close_boids, 30, 0.2)
-		steering.cohesion(owner.close_boids, 30, 0.5)
-		steering.seperation(owner.close_boids, 10, 0.6)
-#	if close_obstacles.size() > 0:
-#		steering.seperation(close_obstacles, 30, 2)
+	if active_close_boids.size() > 0:
+		steering.align(active_close_boids, 30, 0.5)
+		steering.cohesion(active_close_boids, 30, 1)
+		steering.seperation(active_close_boids, 10, 1.5)
+	if owner.close_obstacles.size() > 0:
+		steering.seperation(owner.close_obstacles, 15, 1.5)
 	if los_obstacle:
-		steering.collision_avoidance(los_obstacle, 4)
+		steering.collision_avoidance(los_obstacle, 2)
 	
-	steering.update(state)
 
 
 func LOS_simplify():
@@ -66,12 +75,34 @@ func update_seek_path(delta):
 	var path_size = seek_path.size()
 	if path_size == 0:
 		return
+		
 	var distance_to_next = owner.position.distance_to(seek_path[0])
-	if path_size == 1 and owner.linear_velocity.length() < 1 and distance_to_next < 10:
+	var speed = owner.linear_velocity.length()
+	
+	var close_units = get_active_close_boids().size()
+	# r * (n+1) * 0.55 where 0.55 is a ratio for a quite loose sphere packing
+	var stop_distance = 10 * (1.5 + close_units*0.8)
+	var stop_speed = owner.MAX_FORCE*0.95
+	
+	#If we can't reach the last target. Give up after a given time.
+	# This will often happen when lots of units path to the same target
+	if path_size == 1 and speed < 5:
+#		print("giveup? %s" %giveup_timer)
+		giveup_timer += delta
+		if giveup_timer > GIVEUP_TIMER:
+#			print("giving up with a speed of: %s" % speed)
+			seek_path.remove(0)
+			return
+	else:
+		giveup_timer = 0
+	#If close to the last target
+#	if path_size == 1  and distance_to_next < stop_distance:
+	if path_size == 1 and speed < stop_speed and distance_to_next < stop_distance and state_timer > 0.4:
 		seek_path.remove(0)
+#		print("Stopping (stop distance: %s) with a speed of: %s" % [stop_distance, speed])
 		return
 
-	if seek_path.size() > 1  and (simplify_time > PATH_SIMPLIFY_TIMER || distance_to_next < owner.linear_velocity.length()) :
+	if path_size > 1  and (simplify_time > PATH_SIMPLIFY_TIMER || distance_to_next < speed) :
 		simplify_time = 0
 		LOS_simplify()
 
@@ -86,6 +117,14 @@ func update_los_obstacle(delta):
 		else:
 			los_obstacle = null
 
+
+func get_active_close_boids():
+	var active_boids = []
+	for boid in owner.close_boids:
+		if boid.state_machine.is_active():
+			active_boids.append(boid)
+	return active_boids
+	
 
 func _draw():
 	if seek_path.size() > 0:

@@ -6,7 +6,7 @@ and changing the current/active state.
 """
 extends Node
 
-signal state_changed(current_state)
+signal state_changed(current_state, params)
 
 var states_map = {}
 

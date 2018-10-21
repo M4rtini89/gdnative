@@ -2,8 +2,8 @@ extends RigidBody2D
 
 export var MAX_SPEED = 50
 export var MAX_FORCE = 2
-export var ARRIVE_DISTANCE = 15
-export var DRAW_DEBUG = true
+export var ARRIVE_DISTANCE = 10
+export var DRAW_DEBUG = false
 export var LOS_WIDTH = 5
 
 
@@ -12,7 +12,6 @@ var close_obstacles = []
 
 
 var steering = preload("res://AI/SteeringManager.gd").new()
-signal new_path(path)
 
 onready var sprite = $Sprite
 onready var selection_ring = $SelectionVisual
@@ -46,7 +45,7 @@ func update_sprite(delta):
 		sprite.flip_v = false
 
 
-func _physics_process(delta):
+func _input(event):
 	if Input.is_action_just_pressed("click") and selected:
 		var new_target = get_global_mouse_position()
 		var seek_path = null
@@ -95,11 +94,13 @@ func wake_up():
 
 
 func _integrate_forces(state):
+	steering.reset()
 	state_machine.current_state.integrate_force(state)
+	steering.update(state)
 
 
 func _draw():
-	if state_machine.current_state.has_method("_draw"):
+	if DRAW_DEBUG and  state_machine.current_state.has_method("_draw"):
 		state_machine.current_state._draw()
 
 

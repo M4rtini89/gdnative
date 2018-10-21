@@ -23,7 +23,7 @@ func _seek(target, arrive_distance):
 		desired_velocity = desired_velocity.normalized() * host.MAX_SPEED * (distance / arrive_distance)
 	else:
 		desired_velocity = desired_velocity.normalized() * host.MAX_SPEED
-	return (desired_velocity - host.linear_velocity)
+	return (desired_velocity - host.linear_velocity).normalized()
 
 
 func flee(target, weight = 1):

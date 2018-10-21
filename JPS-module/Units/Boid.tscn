@@ -58,8 +58,8 @@ __meta__ = {
 }
 MAX_SPEED = 25
 MAX_FORCE = 2
-ARRIVE_DISTANCE = 15
-DRAW_DEBUG = true
+ARRIVE_DISTANCE = 10
+DRAW_DEBUG = false
 LOS_WIDTH = 5
 
 [node name="SelectionVisual" type="Sprite" parent="."]
@@ -107,11 +107,13 @@ active = false
 
 [node name="Idle" type="Node2D" parent="BoidStateMachine"]
 script = ExtResource( 5 )
+IDLE_POS_RESEEK = 20
 
 [node name="Move" type="Node2D" parent="BoidStateMachine"]
 script = ExtResource( 6 )
 PATH_SIMPLIFY_TIMER = 2
 OBSTACLE_RAYCAST_TIMER = 1
+GIVEUP_TIMER = 0.5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
