@@ -43,7 +43,8 @@ func integrate_force(state):
 		emit_signal('finished', 'idle')
 		return
 
-	var active_close_boids = get_active_close_boids()
+#	var active_close_boids = get_active_close_boids()
+	var active_close_boids = owner.close_boids
 	if active_close_boids.size() > 0:
 #		steering.align(active_close_boids, 30, 0.5)
 		steering.cohesion(active_close_boids, 30, 1)

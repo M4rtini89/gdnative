@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Levels/NavTest.gd" type="Script" id=1]
 [ext_resource path="res://Tiles.tres" type="TileSet" id=2]
-[ext_resource path="res://Units/Boid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Units/Tank.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://UI/selection_box.png" type="Texture" id=5]
 [ext_resource path="res://UI/SelectionBox.gd" type="Script" id=6]
@@ -33,66 +33,21 @@ _sections_unfolded = [ "Collision" ]
 [node name="walls" type="Node2D" parent="."]
 
 [node name="Units" type="Node2D" parent="."]
-editor/display_folded = true
 
-[node name="Boid" parent="Units" instance=ExtResource( 3 )]
+[node name="Tank" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 74.9619, 82.0322 )
 
-[node name="Boid2" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 153.458, 106.732 )
+[node name="Tank2" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 106.342, 93.9486 )
 
-[node name="Boid3" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 150.576, 89.8011 )
+[node name="Tank3" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 123.819, 82.0322 )
 
-[node name="Boid4" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 127.161, 85.118 )
+[node name="Tank4" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 140.899, 101.893 )
 
-[node name="Boid5" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 138.688, 70.3482 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid6" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 162.824, 68.9072 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid7" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 179.593, 62.7471 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid8" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 187.807, 80.543 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid9" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 192.598, 105.183 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid10" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 210.052, 90.1254 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid11" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 210.394, 70.2762 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid12" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 232.639, 58.2982 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid13" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 237.088, 80.2008 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid14" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 235.377, 102.103 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid15" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 221.003, 120.584 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
-
-[node name="Boid16" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 202.523, 129.824 )
-_sections_unfolded = [ "Collision", "Linear", "Pickable", "physics_material_override" ]
+[node name="Tank5" parent="Units" instance=ExtResource( 3 )]
+position = Vector2( 123.422, 134.862 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )
