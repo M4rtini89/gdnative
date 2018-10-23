@@ -3,7 +3,7 @@ extends RigidBody2D
 export var MAX_SPEED = 50
 export var MAX_FORCE = 2
 export var ARRIVE_DISTANCE = 10
-export var DRAW_DEBUG = true
+export var DRAW_DEBUG = false
 export var LOS_WIDTH = 5
 
 

@@ -108,7 +108,7 @@ func update_seek_path(delta):
 	if path_size == 1  and distance_to_next < stop_distance and speed < stop_speed:
 #	if path_size == 1 and speed < stop_speed and distance_to_next < stop_distance and state_timer > 0.4:
 		seek_path.remove(0)
-		print("Stopping (stop distance: %s) with a speed of: %s" % [stop_distance, speed])
+#		print("Stopping (stop distance: %s) with a speed of: %s" % [stop_distance, speed])
 		return
 
 	if path_size > 1  and (simplify_time > PATH_SIMPLIFY_TIMER || distance_to_next < speed) :

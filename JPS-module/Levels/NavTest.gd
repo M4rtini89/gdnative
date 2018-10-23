@@ -22,6 +22,13 @@ func _ready():
 #	find_astar_path()
 #	find_jps_path()
 
+func _input(event):
+	if Input.is_action_just_pressed("click"):
+		var markerNode = load("res://UI/MoveCommandMarker.tscn").instance()
+		markerNode.position = get_global_mouse_position()
+		markerNode.owner = owner
+		add_child(markerNode)
+
 func query_path(start, goal):
 	
 	var path = jps_instance.find_path(to_tile_cord(start), to_tile_cord(goal), 1)
