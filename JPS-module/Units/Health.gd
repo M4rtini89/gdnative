@@ -23,4 +23,8 @@ func set_health(value):
 	emit_signal("health_changed",  value, percent)
 	if (_current_health <= 0):
 		emit_signal("dead")
+	if percent == 100:
+		visible = false
+	else:
+		visible = true
 
