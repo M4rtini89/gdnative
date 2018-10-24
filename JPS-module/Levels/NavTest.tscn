@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/NavTest.gd" type="Script" id=1]
 [ext_resource path="res://Tiles.tres" type="TileSet" id=2]
@@ -7,6 +7,13 @@
 [ext_resource path="res://Levels/Camera2D.gd" type="Script" id=5]
 [ext_resource path="res://UI/selection_box.png" type="Texture" id=6]
 [ext_resource path="res://UI/SelectionBox.gd" type="Script" id=7]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+friction = 0.1
+rough = false
+bounce = 0.0
+absorbent = false
 
 [node name="NavTest" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,30 +40,32 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CommandController" type="Node2D" parent="."]
 script = ExtResource( 3 )
+attack_margin = 6
 
 [node name="walls" type="Node2D" parent="."]
 
 [node name="Units" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Tank" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 74.9619, 82.0322 )
-team = 1
+physics_material_override = SubResource( 1 )
 
 [node name="Tank2" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 106.342, 93.9486 )
-team = 1
+physics_material_override = SubResource( 1 )
 
 [node name="Tank3" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 123.819, 82.0322 )
-team = 1
+physics_material_override = SubResource( 1 )
 
 [node name="Tank4" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 140.899, 101.893 )
+physics_material_override = SubResource( 1 )
 team = 1
 
 [node name="Tank5" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 123.422, 134.862 )
+physics_material_override = SubResource( 1 )
 team = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]

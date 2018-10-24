@@ -1,3 +1,4 @@
+tool
 extends RigidBody2D
 
 #Boid config
@@ -19,14 +20,21 @@ var close_obstacles = []
 
 #Unit specific variables
 var selected setget set_selected
-export(int, "Team 1", "Team 2", "Team 3", "Team 4") var team = 0
+export(int, "Team 1", "Team 2", "Team 3", "Team 4") var team = 0 setget set_team
 export(Array, Texture) var team_texture 
+
+func set_team(value):
+	team = value
+	if team_texture and  team < team_texture.size():
+		$Sprite.texture = team_texture[team]
+
 
 func set_selected(value):
 	selected = value
 	selection_ring.visible = selected
 
 func _ready():
+	sprite.texture = team_texture[team]
 	steering.host = self
 	self.selected = false
 	state_machine.start()
