@@ -19,6 +19,7 @@ onready var state_machine = $BoidStateMachine
 
 var selected setget set_selected
 
+
 func set_selected(value):
 	selected = value
 	selection_ring.visible = selected
@@ -45,23 +46,23 @@ func update_sprite(delta):
 		sprite.flip_v = false
 
 
-func _input(event):
-	if Input.is_action_just_pressed("click") and selected:
-		var new_target = get_global_mouse_position()
-		var seek_path = null
-		if !LOS_target_check(new_target):
-			seek_path = [new_target]
-		else:
-			seek_path = Global.Level.query_path(position, new_target)
-			if seek_path.size() > 0:
-				seek_path.append(new_target)
-		if seek_path and sleeping:
-			#set_sleeping(false)  
-			#apply_central_impulse(Vector2(1,1))
-			# hack because the above does not work unless you do it several times..
-			wake_up()
-		if seek_path:
-				state_machine._change_state("move", seek_path)
+func move(new_target):
+#	if Input.is_action_just_pressed("click") and selected:
+#		var new_target = get_global_mouse_position()
+	var seek_path = null
+	if !LOS_target_check(new_target):
+		seek_path = [new_target]
+	else:
+		seek_path = Global.Level.query_path(position, new_target)
+		if seek_path.size() > 0:
+			seek_path.append(new_target)
+	if seek_path and sleeping:
+		#set_sleeping(false)  
+		#apply_central_impulse(Vector2(1,1))
+		# hack because the above does not work unless you do it several times..
+		wake_up()
+	if seek_path:
+			state_machine._change_state("move", seek_path)
 
 
 func LOS_target_check(target, ray_width=LOS_WIDTH):
