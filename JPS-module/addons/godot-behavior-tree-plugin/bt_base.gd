@@ -20,7 +20,7 @@ func _enter(tick):
 	enter(tick)
 
 func _open(tick):
-	print("opening node")
+#	print("opening node")
 	tick.openNode(self)
 	tick.blackboard.set('isOpen', true, tick.tree, self)
 	open(tick)
@@ -30,7 +30,7 @@ func _tick(tick):
 	return tick(tick)
 
 func _close(tick):
-	print("closing node")
+#	print("closing node")
 	tick.closeNode(self)
 	tick.blackboard.set('isOpen', false, tick.tree, self)
 	close(tick)

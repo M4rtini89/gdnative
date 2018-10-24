@@ -14,6 +14,10 @@ onready var selection_ring = $SelectionVisual
 onready var state_machine = $BoidStateMachine
 
 #AI
+
+onready var BT = $Idle
+onready var BT_context = $BehaviorBlackboard
+
 var steering = preload("res://AI/SteeringManager.gd").new()
 var close_boids = []
 var close_obstacles = []
@@ -40,6 +44,10 @@ func _ready():
 	state_machine.start()
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
+	BT_context.set("delta", delta)
+	BT.tick(self, BT_context)
 	if DRAW_DEBUG:
 		update()
 	if linear_velocity.length() > 1:

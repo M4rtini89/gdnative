@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends \"res://addons/godot-behavior-tree-plugin/condition.gd\"
+
+export(String) var state_goal
+
+func tick(tick):
+	if tick.blackboard(\"actor_state\") == state_goal:
+		return OK
+	else:
+		return FAILED"
+
+[node name="StateCondition" type="Node"]
+script = SubResource( 1 )
+state_goal = null
+

@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/godot-behavior-tree-plugin/behavior_tree.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/root_icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/selector.gd" type="Script" id=3]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/selector_icon.png" type="Texture" id=4]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/sequence.gd" type="Script" id=5]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/sequence_icon.png" type="Texture" id=6]
+[ext_resource path="res://AI/BT_EnemyInRange.tscn" type="PackedScene" id=7]
+[ext_resource path="res://AI/BT_Debug.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/wait.gd" type="Script" id=9]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/action_icon.png" type="Texture" id=10]
+
+[node name="Idle" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+
+[node name="BehaviorSelector" type="Node" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="Sequence" type="Node" parent="BehaviorSelector"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+
+[node name="EnemyInRange" parent="BehaviorSelector/Sequence" instance=ExtResource( 7 )]
+sight_range = 25
+
+[node name="Debug" parent="BehaviorSelector/Sequence" instance=ExtResource( 8 )]
+
+[node name="Sequence2" type="Node" parent="BehaviorSelector"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+
+[node name="BehaviorWait" type="Node" parent="BehaviorSelector/Sequence2"]
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_icon": ExtResource( 10 )
+}
+wait_time = 5.0
+
