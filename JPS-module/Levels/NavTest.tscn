@@ -41,18 +41,23 @@ editor/display_folded = true
 
 [node name="Tank" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 74.9619, 82.0322 )
+team = 1
 
 [node name="Tank2" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 106.342, 93.9486 )
+team = 1
 
 [node name="Tank3" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 123.819, 82.0322 )
+team = 1
 
 [node name="Tank4" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 140.899, 101.893 )
+team = 1
 
 [node name="Tank5" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 123.422, 134.862 )
+team = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 260.823, 164.255 )

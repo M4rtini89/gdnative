@@ -7,10 +7,16 @@
 [ext_resource path="res://UI/green_button03.png" type="Texture" id=5]
 [ext_resource path="res://Units/Weapon.gd" type="Script" id=6]
 
-[node name="Tank" instance=ExtResource( 1 )]
+[node name="Tank" index="0" instance=ExtResource( 1 )]
 position = Vector2( 1.3222, 3.08513 )
 script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "physics_material_override", "team_textures" ]
+team = 0
+team_texture = null
 unit_name = "Tank"
+
+[node name="Sprite" parent="." index="1"]
+_sections_unfolded = [ "Offset", "Transform", "texture" ]
 
 [node name="BoidStateMachine" parent="." index="4"]
 editor/display_folded = true

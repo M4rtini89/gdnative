@@ -6,6 +6,7 @@ onready var Health = $Health
 onready var WeaponSystem = $Weapon
 
 
+
 func take_damage(value):
 	Health.take_damage(value)
 

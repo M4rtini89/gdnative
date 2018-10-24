@@ -1,24 +1,26 @@
 extends RigidBody2D
 
+#Boid config
 export var MAX_SPEED = 25
 export var MAX_FORCE = 2
 export var ARRIVE_DISTANCE = 10
 export var DRAW_DEBUG = false
 export var LOS_WIDTH = 5
 
-
-var close_boids = []
-var close_obstacles = []
-
-
-var steering = preload("res://AI/SteeringManager.gd").new()
-
+#Scene Nodes
 onready var sprite = $Sprite
 onready var selection_ring = $SelectionVisual
 onready var state_machine = $BoidStateMachine
 
-var selected setget set_selected
+#AI
+var steering = preload("res://AI/SteeringManager.gd").new()
+var close_boids = []
+var close_obstacles = []
 
+#Unit specific variables
+var selected setget set_selected
+export(int, "Team 1", "Team 2", "Team 3", "Team 4") var team = 0
+export(Array, Texture) var team_texture 
 
 func set_selected(value):
 	selected = value
