@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/TankShot.wav-153e333c2fda2663b8cbe9c3eb060c08.sample"
+
+[deps]
+
+source_file="res://Units/SFX/TankShot.wav"
+dest_files=[ "res://.import/TankShot.wav-153e333c2fda2663b8cbe9c3eb060c08.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

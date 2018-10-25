@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/godot-behavior-tree-plugin/behavior_tree.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot-behavior-tree-plugin/root_icon.png" type="Texture" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence.gd" type="Script" id=5]
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence_icon.png" type="Texture" id=6]
 [ext_resource path="res://AI/BT_EnemyInRange.tscn" type="PackedScene" id=7]
-[ext_resource path="res://AI/BT_Debug.tscn" type="PackedScene" id=8]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/wait.gd" type="Script" id=9]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/action_icon.png" type="Texture" id=10]
+[ext_resource path="res://AI/BT_Scripts/BT_FaceTarget.gd" type="Script" id=8]
+[ext_resource path="res://AI/BT_Scripts/BT_Shoot.gd" type="Script" id=9]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/wait.gd" type="Script" id=10]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/action_icon.png" type="Texture" id=11]
 
 [node name="Idle" type="Node"]
 script = ExtResource( 1 )
@@ -23,27 +24,33 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="Sequence" type="Node" parent="BehaviorSelector"]
+[node name="Selector" type="Node" parent="BehaviorSelector"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 
-[node name="EnemyInRange" parent="BehaviorSelector/Sequence" instance=ExtResource( 7 )]
-sight_range = 25
+[node name="EnemyInRange" parent="BehaviorSelector/Selector" instance=ExtResource( 7 )]
+sight_range = 50
 
-[node name="Debug" parent="BehaviorSelector/Sequence" instance=ExtResource( 8 )]
+[node name="FaceTarget" type="Node" parent="BehaviorSelector/Selector"]
+script = ExtResource( 8 )
+max_turn_speed = 5
+success_limit = 1
 
-[node name="Sequence2" type="Node" parent="BehaviorSelector"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-
-[node name="BehaviorWait" type="Node" parent="BehaviorSelector/Sequence2"]
+[node name="Shoot" type="Node" parent="BehaviorSelector/Selector"]
 script = ExtResource( 9 )
+
+[node name="Selector2" type="Node" parent="BehaviorSelector"]
+script = ExtResource( 5 )
 __meta__ = {
-"_editor_icon": ExtResource( 10 )
+"_editor_icon": ExtResource( 6 )
+}
+
+[node name="BehaviorWait" type="Node" parent="BehaviorSelector/Selector2"]
+script = ExtResource( 10 )
+__meta__ = {
+"_editor_icon": ExtResource( 11 )
 }
 wait_time = 5.0
 

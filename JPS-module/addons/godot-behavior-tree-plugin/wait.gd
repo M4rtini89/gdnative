@@ -13,7 +13,6 @@ func open(tick):
 func tick(tick):
 	last_time += tick.blackboard.get("delta")
 	if last_time > wait_time:
-		print("done waiting") 
 		return OK
 	else:
 		return ERR_BUSY

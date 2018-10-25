@@ -1,5 +1,6 @@
 tool
 extends RigidBody2D
+class_name Boid
 
 #Boid config
 export var MAX_SPEED = 25
@@ -57,6 +58,11 @@ func _process(delta):
 func update_sprite(delta):
 	var angle = linear_velocity.angle()
 	sprite.rotation = angle
+	sprite_flip_adjust()
+
+
+func sprite_flip_adjust():
+	var angle = sprite.rotation
 	angle *= 180 / PI 
 	if angle < -90 or angle > 90:
 		sprite.flip_v = true	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Units/Boid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Units/Tank.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://UI/red_button00.png" type="Texture" id=6]
 [ext_resource path="res://UI/green_button03.png" type="Texture" id=7]
 [ext_resource path="res://Units/Weapon.gd" type="Script" id=8]
+[ext_resource path="res://Units/TankShotExplosion.tscn" type="PackedScene" id=9]
 
 [node name="Tank" instance=ExtResource( 1 )]
 position = Vector2( 1.3222, 3.08513 )
@@ -69,8 +70,9 @@ _sections_unfolded = [ "Rect" ]
 [node name="Weapon" type="Node2D" parent="." index="6"]
 script = ExtResource( 8 )
 damage = 25
-fire_range = 25
+fire_range = 50
 fire_rate = 0.5
+explosion_scene = ExtResource( 9 )
 
 [node name="CanShootTimer" type="Timer" parent="Weapon" index="0"]
 process_mode = 1
