@@ -7,12 +7,12 @@
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence.gd" type="Script" id=5]
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence_icon.png" type="Texture" id=6]
 [ext_resource path="res://AI/BT_EnemyInRange.tscn" type="PackedScene" id=7]
-[ext_resource path="res://AI/BT_FaceTarget.tscn" type="PackedScene" id=8]
-[ext_resource path="res://AI/BT_Shoot.tscn" type="PackedScene" id=9]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/wait.gd" type="Script" id=10]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/action_icon.png" type="Texture" id=11]
+[ext_resource path="res://AI/BT_StopMovement.tscn" type="PackedScene" id=8]
+[ext_resource path="res://AI/BT_FaceTarget.tscn" type="PackedScene" id=9]
+[ext_resource path="res://AI/BT_Shoot.tscn" type="PackedScene" id=10]
+[ext_resource path="res://AI/BT_PathFollowSequence.tscn" type="PackedScene" id=11]
 
-[node name="Idle" type="Node"]
+[node name="AttackMove" type="Node"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
@@ -24,29 +24,20 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="Sequence" type="Node" parent="BehaviorSelector"]
+[node name="BehaviorSequence" type="Node" parent="BehaviorSelector"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 
-[node name="EnemyInRange" parent="BehaviorSelector/Sequence" instance=ExtResource( 7 )]
+[node name="EnemyInRange" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 7 )]
 sight_range = 50
 
-[node name="FaceTarget" parent="BehaviorSelector/Sequence" instance=ExtResource( 8 )]
+[node name="StopMovement" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 8 )]
 
-[node name="Shoot" parent="BehaviorSelector/Sequence" instance=ExtResource( 9 )]
+[node name="FaceTarget" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 9 )]
 
-[node name="Sequence2" type="Node" parent="BehaviorSelector"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
+[node name="Shoot" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 10 )]
 
-[node name="BehaviorWait" type="Node" parent="BehaviorSelector/Sequence2"]
-script = ExtResource( 10 )
-__meta__ = {
-"_editor_icon": ExtResource( 11 )
-}
-wait_time = 5.0
+[node name="PathFollowSequence" parent="BehaviorSelector" instance=ExtResource( 11 )]
 

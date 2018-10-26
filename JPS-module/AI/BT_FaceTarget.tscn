@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://AI/BT_Scripts/BT_FaceTarget.gd" type="Script" id=1]
+
+[node name="FaceTarget" type="Node"]
+script = ExtResource( 1 )
+max_turn_speed = 5
+success_limit = 1
+

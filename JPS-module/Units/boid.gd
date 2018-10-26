@@ -15,9 +15,11 @@ onready var selection_ring = $SelectionVisual
 onready var state_machine = $BoidStateMachine
 
 #AI
-
-onready var BT = $Idle
-onready var BT_context = $BehaviorBlackboard
+onready var BT_Idle = $AI/Idle
+onready var BT_Move = $AI/PathFollow
+onready var BT_AMove = $AI/AttackMove
+onready var BT_context = $AI/BehaviorBlackboard
+var AI_tree = "idle"
 
 var steering = preload("res://AI/SteeringManager.gd").new()
 var close_boids = []
@@ -47,8 +49,6 @@ func _ready():
 func _process(delta):
 	if Engine.is_editor_hint():
 		return
-	BT_context.set("delta", delta)
-	BT.tick(self, BT_context)
 	if DRAW_DEBUG:
 		update()
 	if linear_velocity.length() > 1:
@@ -73,20 +73,38 @@ func sprite_flip_adjust():
 func move(new_target):
 #	if Input.is_action_just_pressed("click") and selected:
 #		var new_target = get_global_mouse_position()
-	var seek_path = null
-	if !LOS_target_check(new_target):
-		seek_path = [new_target]
-	else:
-		seek_path = Global.Level.query_path(position, new_target)
-		if seek_path.size() > 0:
-			seek_path.append(new_target)
+	var seek_path = _get_path(new_target)
 	if seek_path and sleeping:
 		#set_sleeping(false)  
 		#apply_central_impulse(Vector2(1,1))
 		# hack because the above does not work unless you do it several times..
 		wake_up()
 	if seek_path:
-			state_machine._change_state("move", seek_path)
+		BT_context.set("seek_path", seek_path)
+		AI_tree = "move"
+
+
+func Amove(new_target):
+	var seek_path = _get_path(new_target)
+	if seek_path and sleeping:
+		#set_sleeping(false)  
+		#apply_central_impulse(Vector2(1,1))
+		# hack because the above does not work unless you do it several times..
+		wake_up()
+	if seek_path:
+		BT_context.set("seek_path", seek_path)
+		AI_tree = "Amove"
+
+
+func _get_path(target):
+	var seek_path = null
+	if !LOS_target_check(target):
+		seek_path = [target]
+	else:
+		seek_path = Global.Level.query_path(position, target)
+		if seek_path.size() > 0:
+			seek_path.append(target)
+	return seek_path
 
 
 func LOS_target_check(target, ray_width=LOS_WIDTH):
@@ -114,10 +132,20 @@ func wake_up():
 	apply_central_impulse(Vector2(10,10))
 
 
-func _integrate_forces(state):
-	steering.reset()
-	state_machine.current_state.integrate_force(state)
-	steering.update(state)
+func _integrate_forces(physics_state):
+	BT_context.set("delta", physics_state.step)
+	BT_context.set("physics_state", physics_state)
+	match AI_tree:
+		"idle":
+			BT_Idle.tick(self, BT_context)
+		"move":
+			var move_res = (BT_Move.tick(self, BT_context))
+			if move_res == FAILED:
+				AI_tree = "idle"
+		"Amove":
+			var move_res = (BT_AMove.tick(self, BT_context))
+			if move_res == FAILED:
+				AI_tree = "idle"
 
 
 func _draw():

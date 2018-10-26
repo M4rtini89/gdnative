@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Units/boid.gd" type="Script" id=1]
 [ext_resource path="res://Units/GFX/selection-ring.png" type="Texture" id=2]
@@ -6,9 +6,11 @@
 [ext_resource path="res://Units/State/BoidStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Units/State/Idle.gd" type="Script" id=5]
 [ext_resource path="res://Units/State/Move.gd" type="Script" id=6]
-[ext_resource path="res://AI/BT_Idle.tscn" type="PackedScene" id=7]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard.gd" type="Script" id=8]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard_icon.png" type="Texture" id=9]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard.gd" type="Script" id=7]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard_icon.png" type="Texture" id=8]
+[ext_resource path="res://AI/BT_Idle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://AI/BT_PathFollow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://AI/BT_AttackMove.tscn" type="PackedScene" id=11]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -119,13 +121,19 @@ PATH_SIMPLIFY_TIMER = 2
 OBSTACLE_RAYCAST_TIMER = 1
 GIVEUP_TIMER = 0.5
 
-[node name="Idle" parent="." instance=ExtResource( 7 )]
+[node name="AI" type="Node" parent="."]
 
-[node name="BehaviorBlackboard" type="Node" parent="."]
-script = ExtResource( 8 )
+[node name="BehaviorBlackboard" type="Node" parent="AI"]
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 8 )
 }
+
+[node name="Idle" parent="AI" instance=ExtResource( 9 )]
+
+[node name="PathFollow" parent="AI" instance=ExtResource( 10 )]
+
+[node name="AttackMove" parent="AI" instance=ExtResource( 11 )]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

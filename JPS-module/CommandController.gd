@@ -45,14 +45,22 @@ func _right_click():
 			add_child(attack_marker)
 		return	
 
-	
+	var amove = Input.is_key_pressed(KEY_CONTROL)
 	for unit in get_tree().get_nodes_in_group("units"):
 		if unit.selected:
 			unit_count += 1
-			unit.move(click_position)
+			if amove:
+				print("AMOVE!")
+				unit.Amove(click_position)
+			else:
+				unit.move(click_position)
 	
 	if unit_count > 0:
-		var move_marker = MoveMarkerNode.instance()
+		var move_marker
+		if amove:
+			move_marker = AttackMarkerNode.instance()
+		else:
+			move_marker = MoveMarkerNode.instance()
 		move_marker.position = click_position
 		move_marker.owner = owner
 		add_child(move_marker)
