@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence_icon.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://AI/BT_Scripts/BT_CanMove.gd" type="Script" id=4]
 [ext_resource path="res://AI/BT_Scripts/BT_PathFollow.gd" type="Script" id=5]
 [ext_resource path="res://AI/BT_StopMovement.tscn" type="PackedScene" id=6]
-[ext_resource path="res://AI/BT_Scripts/BT_StopMovement.gd" type="Script" id=7]
 
 [node name="PathFollowSequence" type="Node"]
 script = ExtResource( 1 )
@@ -26,6 +25,5 @@ PATH_SIMPLIFY_TIMER = 2
 OBSTACLE_RAYCAST_TIMER = 1
 GIVEUP_TIMER = 0.5
 
-[node name="StopMovement" type="Node" parent="." instance=ExtResource( 6 )]
-script = ExtResource( 7 )
+[node name="StopMovement" parent="." instance=ExtResource( 6 )]
 

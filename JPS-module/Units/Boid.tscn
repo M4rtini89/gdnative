@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Units/boid.gd" type="Script" id=1]
 [ext_resource path="res://Units/GFX/selection-ring.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://AI/BT_Idle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://AI/BT_PathFollow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://AI/BT_AttackMove.tscn" type="PackedScene" id=11]
+[ext_resource path="res://AI/BT_AttackTarget.tscn" type="PackedScene" id=12]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -134,6 +135,8 @@ __meta__ = {
 [node name="PathFollow" parent="AI" instance=ExtResource( 10 )]
 
 [node name="AttackMove" parent="AI" instance=ExtResource( 11 )]
+
+[node name="AttackTarget" parent="AI" instance=ExtResource( 12 )]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

@@ -73,9 +73,6 @@ func integrate_force():
 #		steering.seperation(owner.close_obstacles, 15, 1.5)
 	if los_obstacle:
 		steering.collision_avoidance(los_obstacle, 2)
-	var friendlies = friendly_collision_avoidance()
-	if friendlies:
-		steering.collision_avoidance(friendlies[0].position, 2)
 	
 	return ERR_BUSY
 
@@ -140,17 +137,6 @@ func obstacle_raycast():
 	var look_point = actor.global_position + actor.linear_velocity.normalized() * actor.MAX_SPEED * 5
 	return actor.LOS_target_check(look_point, actor.LOS_WIDTH)
 
-
-func friendly_collision_avoidance():
-	var friendlies = []
-	for boid in actor.close_boids:
-		if boid.team == actor.team:
-			var vel_vec : Vector2 = state.linear_velocity
-			var angle = vel_vec.angle_to(boid.position - actor.position) * 180 / PI
-			if abs(angle) < 10:
-				print(angle)
-				friendlies.append(boid)
-	return friendlies
 
 func get_active_close_boids():
 	var active_boids = []

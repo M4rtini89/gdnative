@@ -16,6 +16,7 @@ onready var state_machine = $BoidStateMachine
 
 #AI
 onready var BT_Idle = $AI/Idle
+onready var BT_Attack = $AI/AttackTarget
 onready var BT_Move = $AI/PathFollow
 onready var BT_AMove = $AI/AttackMove
 onready var BT_context = $AI/BehaviorBlackboard
@@ -144,6 +145,10 @@ func _integrate_forces(physics_state):
 				AI_tree = "idle"
 		"Amove":
 			var move_res = (BT_AMove.tick(self, BT_context))
+			if move_res == FAILED:
+				AI_tree = "idle"
+		"attack":
+			var move_res = (BT_Attack.tick(self, BT_context))
 			if move_res == FAILED:
 				AI_tree = "idle"
 

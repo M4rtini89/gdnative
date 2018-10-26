@@ -37,7 +37,7 @@ func _right_click():
 		for unit in get_team_units(0):
 			if unit.selected:
 				unit_count += 1
-				unit.attack(attack_target)
+				unit.attack_command(attack_target)
 		if unit_count > 0:
 			var attack_marker = AttackMarkerNode.instance()
 			attack_marker.position = attack_target.position

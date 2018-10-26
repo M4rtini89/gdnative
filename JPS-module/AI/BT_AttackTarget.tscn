@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/godot-behavior-tree-plugin/behavior_tree.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/root_icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/selector.gd" type="Script" id=3]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/selector_icon.png" type="Texture" id=4]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/sequence.gd" type="Script" id=5]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/sequence_icon.png" type="Texture" id=6]
+[ext_resource path="res://AI/BT_Scripts/BT_Is_object_valid.gd" type="Script" id=7]
+[ext_resource path="res://AI/BT_Scripts/BT_SpecificEnemyInRange.gd" type="Script" id=8]
+[ext_resource path="res://AI/BT_StopMovement.tscn" type="PackedScene" id=9]
+[ext_resource path="res://AI/BT_Shoot.tscn" type="PackedScene" id=10]
+[ext_resource path="res://AI/BT_Scripts/BT_Timer.gd" type="Script" id=11]
+[ext_resource path="res://AI/BT_Scripts/BT_FindPathToTarget.gd" type="Script" id=12]
+[ext_resource path="res://AI/BT_PathFollowSequence.tscn" type="PackedScene" id=13]
+
+[node name="AttackTarget" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+
+[node name="BehaviorSelector" type="Node" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="BehaviorSequence" type="Node" parent="BehaviorSelector"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+
+[node name="IsObjectValid" type="Node" parent="BehaviorSelector/BehaviorSequence"]
+script = ExtResource( 7 )
+variable = "enemy_attack_target"
+
+[node name="TargetInRange" type="Node" parent="BehaviorSelector/BehaviorSequence"]
+script = ExtResource( 8 )
+sight_range = 45
+
+[node name="StopMovement" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 9 )]
+
+[node name="Shoot" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 10 )]
+
+[node name="BehaviorSequence2" type="Node" parent="BehaviorSelector"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+
+[node name="IsObjectValid2" type="Node" parent="BehaviorSelector/BehaviorSequence2"]
+script = ExtResource( 7 )
+variable = "enemy_attack_target"
+
+[node name="BehaviorSelector" type="Node" parent="BehaviorSelector/BehaviorSequence2"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="RunEveryNSeconds" type="Node" parent="BehaviorSelector/BehaviorSequence2/BehaviorSelector"]
+script = ExtResource( 11 )
+timeout = 1.0
+
+[node name="FindPathToTarget" type="Node" parent="BehaviorSelector/BehaviorSequence2/BehaviorSelector"]
+script = ExtResource( 12 )
+target_var = "enemy_attack_target"
+
+[node name="PathFollowSequence" parent="BehaviorSelector/BehaviorSequence2" instance=ExtResource( 13 )]
+

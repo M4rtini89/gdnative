@@ -6,7 +6,7 @@
 [ext_resource path="res://addons/godot-behavior-tree-plugin/selector_icon.png" type="Texture" id=4]
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence.gd" type="Script" id=5]
 [ext_resource path="res://addons/godot-behavior-tree-plugin/sequence_icon.png" type="Texture" id=6]
-[ext_resource path="res://AI/BT_EnemyInRange.tscn" type="PackedScene" id=7]
+[ext_resource path="res://AI/BT_AnyEnemyInRange.tscn" type="PackedScene" id=7]
 [ext_resource path="res://AI/BT_StopMovement.tscn" type="PackedScene" id=8]
 [ext_resource path="res://AI/BT_FaceTarget.tscn" type="PackedScene" id=9]
 [ext_resource path="res://AI/BT_Shoot.tscn" type="PackedScene" id=10]
@@ -30,7 +30,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 
-[node name="EnemyInRange" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 7 )]
+[node name="AnyEnemyInRange" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 7 )]
 sight_range = 50
 
 [node name="StopMovement" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 8 )]
