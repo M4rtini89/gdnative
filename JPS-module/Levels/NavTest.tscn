@@ -5,7 +5,7 @@
 [ext_resource path="res://CommandController.gd" type="Script" id=3]
 [ext_resource path="res://Units/Tank.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/Camera2D.gd" type="Script" id=5]
-[ext_resource path="res://UI/selection_box.png" type="Texture" id=6]
+[ext_resource path="res://UI/GFX/selection_box.png" type="Texture" id=6]
 [ext_resource path="res://UI/SelectionBox.gd" type="Script" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -61,12 +61,10 @@ physics_material_override = SubResource( 1 )
 [node name="Tank4" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 247.77, 61.2941 )
 physics_material_override = SubResource( 1 )
-team = 1
 
 [node name="Tank5" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 230.293, 94.2631 )
 physics_material_override = SubResource( 1 )
-team = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 243.531, 103.735 )
@@ -105,6 +103,7 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="SelectionBox" type="NinePatchRect" parent="CanvasLayer"]
+visible = false
 modulate = Color( 0.313726, 1, 0, 1 )
 anchor_left = 0.0
 anchor_top = 0.0

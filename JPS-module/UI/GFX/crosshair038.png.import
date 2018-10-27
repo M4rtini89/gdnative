@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crosshair038.png-b0678f24fd6ea2442e08a5f7014f0e4a.stex"
+path="res://.import/crosshair038.png-d1c1f36ae758d49243495684c8c10b59.stex"
 
 [deps]
 
-source_file="res://UI/crosshair038.png"
-dest_files=[ "res://.import/crosshair038.png-b0678f24fd6ea2442e08a5f7014f0e4a.stex" ]
+source_file="res://UI/GFX/crosshair038.png"
+dest_files=[ "res://.import/crosshair038.png-d1c1f36ae758d49243495684c8c10b59.stex" ]
 
 [params]
 

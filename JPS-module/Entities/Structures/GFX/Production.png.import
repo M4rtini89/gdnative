@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/selection_box.png-1a2193e51a74bd282cdcf5ff2bdb5a13.stex"
+path="res://.import/Production.png-90982696dda02a8d0752e7bf99c66978.stex"
 
 [deps]
 
-source_file="res://UI/selection_box.png"
-dest_files=[ "res://.import/selection_box.png-1a2193e51a74bd282cdcf5ff2bdb5a13.stex" ]
+source_file="res://Entities/Structures/GFX/Production.png"
+dest_files=[ "res://.import/Production.png-90982696dda02a8d0752e7bf99c66978.stex" ]
 
 [params]
 

@@ -20,6 +20,7 @@ func create_selection_box(event):
 	
 	if Input.is_action_just_pressed("mouse_left"):
 		dragging = true
+		visible = true
 		drag_start = get_global_mouse_position()
 		set_begin(drag_start)
 	elif Input.is_action_pressed("mouse_left"):
@@ -30,6 +31,7 @@ func create_selection_box(event):
 		if dragging:
 			do_selection()
 			dragging = false
+			visible = false
 		reset_selection_box()
 
 func do_selection():
@@ -37,5 +39,7 @@ func do_selection():
 	if self_rect.get_area():
 		self_rect = self_rect.grow(10)
 	for unit in get_tree().get_nodes_in_group("units"):
+		if unit.team != Global.Player_team:
+			continue
 		var unit_in_rect = self_rect.has_point(unit.get_global_transform_with_canvas().origin)
 		unit.selected = unit_in_rect

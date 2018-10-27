@@ -1,16 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Units/Boid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Units/Tank.gd" type="Script" id=2]
 [ext_resource path="res://Units/GFX/tank_blue.png" type="Texture" id=3]
 [ext_resource path="res://Units/GFX/tank_red.png" type="Texture" id=4]
-[ext_resource path="res://Units/Health.gd" type="Script" id=5]
-[ext_resource path="res://UI/red_button00.png" type="Texture" id=6]
-[ext_resource path="res://UI/green_button03.png" type="Texture" id=7]
-[ext_resource path="res://Units/Weapon.gd" type="Script" id=8]
-[ext_resource path="res://Units/TankShotExplosion.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Entities/Health.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Units/Weapon.gd" type="Script" id=6]
+[ext_resource path="res://Units/TankShotExplosion.tscn" type="PackedScene" id=7]
 
-[node name="Tank" instance=ExtResource( 1 )]
+[node name="Tank" index="0" instance=ExtResource( 1 )]
 position = Vector2( 1.3222, 3.08513 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "physics_material_override", "team_texture", "team_textures" ]
@@ -26,53 +24,14 @@ _sections_unfolded = [ "Offset", "Transform", "texture" ]
 [node name="BoidStateMachine" parent="." index="4"]
 editor/display_folded = true
 
-[node name="Health" type="Node2D" parent="." index="5"]
-editor/display_folded = true
-script = ExtResource( 5 )
-_max_health = 100
-
-[node name="TextureProgress" type="TextureProgress" parent="Health" index="0"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -5.0
-margin_top = 5.0
-margin_right = 185.0
-margin_bottom = 50.0
-rect_scale = Vector2( 0.05, 0.02 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
-value = 50.0
-exp_edit = false
-rounded = false
-allow_greater = false
-allow_lesser = false
-texture_under = ExtResource( 6 )
-texture_over = null
-texture_progress = ExtResource( 7 )
-tint_under = Color( 1, 1, 1, 1 )
-tint_over = Color( 1, 1, 1, 1 )
-tint_progress = Color( 1, 1, 1, 1 )
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
-nine_patch_stretch = false
-_sections_unfolded = [ "Rect" ]
+[node name="Health" parent="." index="5" instance=ExtResource( 5 )]
 
 [node name="Weapon" type="Node2D" parent="." index="6"]
-script = ExtResource( 8 )
+script = ExtResource( 6 )
 damage = 25
 fire_range = 50
 fire_rate = 0.5
-explosion_scene = ExtResource( 9 )
+explosion_scene = ExtResource( 7 )
 
 [node name="CanShootTimer" type="Timer" parent="Weapon" index="0"]
 process_mode = 1
@@ -80,5 +39,4 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[connection signal="dead" from="Health" to="." method="die"]
 [connection signal="timeout" from="Weapon/CanShootTimer" to="Weapon" method="_on_CanShootTimer_timeout"]

@@ -5,8 +5,10 @@ export var fire_range = 25
 export var fire_rate = 0.5 # Shots per second
 export(PackedScene) var explosion_scene
 
+
 onready var shoot_timer = $CanShootTimer
 onready var Health_component = preload("res://Units/Health.gd")
+
 
 var can_shoot = true
 

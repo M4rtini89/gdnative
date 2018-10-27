@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://AI/BT_Scripts/BT_FaceTarget.gd"
 }, {
-"base": "RigidBody2D",
+"base": "",
 "class": "Tank",
 "language": "GDScript",
 "path": "res://Units/Tank.gd"

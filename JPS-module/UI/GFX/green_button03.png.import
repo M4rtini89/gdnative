@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/red_button00.png-00081f3c00601953dc6822d7c04a9441.stex"
+path="res://.import/green_button03.png-817bd83fc4d13bb1a5c50dda61c435ba.stex"
 
 [deps]
 
-source_file="res://UI/red_button00.png"
-dest_files=[ "res://.import/red_button00.png-00081f3c00601953dc6822d7c04a9441.stex" ]
+source_file="res://UI/GFX/green_button03.png"
+dest_files=[ "res://.import/green_button03.png-817bd83fc4d13bb1a5c50dda61c435ba.stex" ]
 
 [params]
 
