@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tank_blue.png-284c7384ae805bed57680537369591ef.stex"
+path="res://.import/scorch_01.png-cb1b8bb03f610b98d47158a5a9876027.stex"
 
 [deps]
 
-source_file="res://Units/GFX/tank_blue.png"
-dest_files=[ "res://.import/tank_blue.png-284c7384ae805bed57680537369591ef.stex" ]
+source_file="res://Entities/Units/GFX/scorch_01.png"
+dest_files=[ "res://.import/scorch_01.png-cb1b8bb03f610b98d47158a5a9876027.stex" ]
 
 [params]
 

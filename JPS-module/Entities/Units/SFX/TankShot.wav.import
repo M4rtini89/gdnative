@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/TankShot.wav-153e333c2fda2663b8cbe9c3eb060c08.sample"
+path="res://.import/TankShot.wav-88792cec390614442a2a0ce4448ec330.sample"
 
 [deps]
 
-source_file="res://Units/SFX/TankShot.wav"
-dest_files=[ "res://.import/TankShot.wav-153e333c2fda2663b8cbe9c3eb060c08.sample" ]
+source_file="res://Entities/Units/SFX/TankShot.wav"
+dest_files=[ "res://.import/TankShot.wav-88792cec390614442a2a0ce4448ec330.sample" ]
 
 [params]
 

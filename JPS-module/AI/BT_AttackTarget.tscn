@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/godot-behavior-tree-plugin/behavior_tree.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot-behavior-tree-plugin/root_icon.png" type="Texture" id=2]
@@ -9,10 +9,11 @@
 [ext_resource path="res://AI/BT_Scripts/BT_Is_object_valid.gd" type="Script" id=7]
 [ext_resource path="res://AI/BT_Scripts/BT_SpecificEnemyInRange.gd" type="Script" id=8]
 [ext_resource path="res://AI/BT_StopMovement.tscn" type="PackedScene" id=9]
-[ext_resource path="res://AI/BT_Shoot.tscn" type="PackedScene" id=10]
-[ext_resource path="res://AI/BT_Scripts/BT_Timer.gd" type="Script" id=11]
-[ext_resource path="res://AI/BT_Scripts/BT_FindPathToTarget.gd" type="Script" id=12]
-[ext_resource path="res://AI/BT_PathFollowSequence.tscn" type="PackedScene" id=13]
+[ext_resource path="res://AI/BT_FaceTarget.tscn" type="PackedScene" id=10]
+[ext_resource path="res://AI/BT_Shoot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://AI/BT_Scripts/BT_Timer.gd" type="Script" id=12]
+[ext_resource path="res://AI/BT_Scripts/BT_FindPathToTarget.gd" type="Script" id=13]
+[ext_resource path="res://AI/BT_PathFollowSequence.tscn" type="PackedScene" id=14]
 
 [node name="AttackTarget" type="Node"]
 script = ExtResource( 1 )
@@ -42,7 +43,9 @@ sight_range = 45
 
 [node name="StopMovement" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 9 )]
 
-[node name="Shoot" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 10 )]
+[node name="FaceTarget" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 10 )]
+
+[node name="Shoot" parent="BehaviorSelector/BehaviorSequence" instance=ExtResource( 11 )]
 
 [node name="BehaviorSequence2" type="Node" parent="BehaviorSelector"]
 script = ExtResource( 5 )
@@ -61,12 +64,12 @@ __meta__ = {
 }
 
 [node name="RunEveryNSeconds" type="Node" parent="BehaviorSelector/BehaviorSequence2/BehaviorSelector"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 timeout = 1.0
 
 [node name="FindPathToTarget" type="Node" parent="BehaviorSelector/BehaviorSequence2/BehaviorSelector"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 target_var = "enemy_attack_target"
 
-[node name="PathFollowSequence" parent="BehaviorSelector/BehaviorSequence2" instance=ExtResource( 13 )]
+[node name="PathFollowSequence" parent="BehaviorSelector/BehaviorSequence2" instance=ExtResource( 14 )]
 
