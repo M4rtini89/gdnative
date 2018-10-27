@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/NavTest.gd" type="Script" id=1]
 [ext_resource path="res://Tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://CommandController.gd" type="Script" id=3]
-[ext_resource path="res://Entities/Units/Tank.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Levels/Camera2D.gd" type="Script" id=5]
-[ext_resource path="res://UI/GFX/selection_box.png" type="Texture" id=6]
-[ext_resource path="res://UI/SelectionBox.gd" type="Script" id=7]
+[ext_resource path="res://Entities/Structures/TankProd.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/Units/Tank.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/Camera2D.gd" type="Script" id=6]
+[ext_resource path="res://UI/GFX/selection_box.png" type="Texture" id=7]
+[ext_resource path="res://UI/SelectionBox.gd" type="Script" id=8]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -44,26 +45,33 @@ attack_margin = 6
 
 [node name="walls" type="Node2D" parent="."]
 
+[node name="Structures" type="Node2D" parent="."]
+
+[node name="Structure" parent="Structures" instance=ExtResource( 4 )]
+position = Vector2( 160, 128 )
+_sections_unfolded = [ "Collision", "Transform", "team_texture" ]
+
 [node name="Units" type="Node2D" parent="."]
 
-[node name="Tank" parent="Units" instance=ExtResource( 4 )]
+[node name="Tank" parent="Units" instance=ExtResource( 5 )]
 position = Vector2( 34.4348, 224.687 )
 physics_material_override = SubResource( 1 )
 
-[node name="Tank2" parent="Units" instance=ExtResource( 4 )]
+[node name="Tank2" parent="Units" instance=ExtResource( 5 )]
 position = Vector2( 65.815, 236.604 )
 physics_material_override = SubResource( 1 )
 
-[node name="Tank3" parent="Units" instance=ExtResource( 4 )]
+[node name="Tank3" parent="Units" instance=ExtResource( 5 )]
 position = Vector2( 83.2919, 224.687 )
 physics_material_override = SubResource( 1 )
+DRAW_DEBUG = true
 
-[node name="Tank4" parent="Units" instance=ExtResource( 4 )]
+[node name="Tank4" parent="Units" instance=ExtResource( 5 )]
 position = Vector2( 247.77, 61.2941 )
 physics_material_override = SubResource( 1 )
 team = 1
 
-[node name="Tank5" parent="Units" instance=ExtResource( 4 )]
+[node name="Tank5" parent="Units" instance=ExtResource( 5 )]
 position = Vector2( 230.293, 94.2631 )
 physics_material_override = SubResource( 1 )
 team = 1
@@ -92,7 +100,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 SCROLL_SPEED = 150
 ZOOM_SPEED = 5
 ZOOM_LIMIT = Vector2( 0.25, 0.75 )
@@ -121,11 +129,11 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 patch_margin_left = 3
 patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Patch Margin", "Rect", "Visibility" ]
 

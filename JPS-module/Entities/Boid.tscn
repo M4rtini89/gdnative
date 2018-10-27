@@ -1,17 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Entities/boid.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Units/GFX/selection-ring.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Units/GFX/tank_blue.png" type="Texture" id=3]
-[ext_resource path="res://Entities/Units/State/BoidStateMachine.gd" type="Script" id=4]
-[ext_resource path="res://Entities/Units/State/Idle.gd" type="Script" id=5]
-[ext_resource path="res://Entities/Units/State/Move.gd" type="Script" id=6]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard.gd" type="Script" id=7]
-[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard_icon.png" type="Texture" id=8]
-[ext_resource path="res://AI/BT_Idle.tscn" type="PackedScene" id=9]
-[ext_resource path="res://AI/BT_PathFollow.tscn" type="PackedScene" id=10]
-[ext_resource path="res://AI/BT_AttackMove.tscn" type="PackedScene" id=11]
-[ext_resource path="res://AI/BT_AttackTarget.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard.gd" type="Script" id=4]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard_icon.png" type="Texture" id=5]
+[ext_resource path="res://AI/BT_Idle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://AI/BT_PathFollow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://AI/BT_AttackMove.tscn" type="PackedScene" id=8]
+[ext_resource path="res://AI/BT_AttackTarget.tscn" type="PackedScene" id=9]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -62,13 +59,14 @@ __meta__ = {
 "_edit_group_": true,
 "_editor_icon": null
 }
+team = 0
+team_texture = null
+entity_name = "unnamed entity"
 MAX_SPEED = 25
 MAX_FORCE = 2
 ARRIVE_DISTANCE = 10
 DRAW_DEBUG = false
 LOS_WIDTH = 5
-team = 0
-team_texture = null
 
 [node name="SelectionVisual" type="Sprite" parent="."]
 modulate = Color( 0, 1, 0, 1 )
@@ -108,36 +106,21 @@ visible = false
 shape = SubResource( 4 )
 _sections_unfolded = [ "shape" ]
 
-[node name="BoidStateMachine" type="Node2D" parent="."]
-position = Vector2( 0.11142, -0.139275 )
-script = ExtResource( 4 )
-active = false
-
-[node name="Idle" type="Node2D" parent="BoidStateMachine"]
-script = ExtResource( 5 )
-IDLE_POS_RESEEK = 20
-
-[node name="Move" type="Node2D" parent="BoidStateMachine"]
-script = ExtResource( 6 )
-PATH_SIMPLIFY_TIMER = 2
-OBSTACLE_RAYCAST_TIMER = 1
-GIVEUP_TIMER = 0.5
-
 [node name="AI" type="Node" parent="."]
 
 [node name="BehaviorBlackboard" type="Node" parent="AI"]
-script = ExtResource( 7 )
+script = ExtResource( 4 )
 __meta__ = {
-"_editor_icon": ExtResource( 8 )
+"_editor_icon": ExtResource( 5 )
 }
 
-[node name="Idle" parent="AI" instance=ExtResource( 9 )]
+[node name="Idle" parent="AI" instance=ExtResource( 6 )]
 
-[node name="PathFollow" parent="AI" instance=ExtResource( 10 )]
+[node name="PathFollow" parent="AI" instance=ExtResource( 7 )]
 
-[node name="AttackMove" parent="AI" instance=ExtResource( 11 )]
+[node name="AttackMove" parent="AI" instance=ExtResource( 8 )]
 
-[node name="AttackTarget" parent="AI" instance=ExtResource( 12 )]
+[node name="AttackTarget" parent="AI" instance=ExtResource( 9 )]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

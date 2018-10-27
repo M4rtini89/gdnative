@@ -8,6 +8,7 @@ export(PackedScene) var explosion_scene
 
 onready var shoot_timer = $CanShootTimer
 onready var Health_component = preload("res://Entities/Health.gd")
+#onready var Health_component = 
 
 
 var can_shoot = true
@@ -22,7 +23,7 @@ func shoot(target):
 	if not is_target_in_range(target):
 		return false
 	for child_node in target.get_children():
-		if child_node is Health_component:
+		if child_node is Health:
 			_shoot(target)
 			return
 

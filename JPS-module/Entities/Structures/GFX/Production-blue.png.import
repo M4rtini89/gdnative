@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Production.png-90982696dda02a8d0752e7bf99c66978.stex"
+path="res://.import/Production-blue.png-b242573c000b1f39843cd3991a12400a.stex"
 
 [deps]
 
-source_file="res://Entities/Structures/GFX/Production.png"
-dest_files=[ "res://.import/Production.png-90982696dda02a8d0752e7bf99c66978.stex" ]
+source_file="res://Entities/Structures/GFX/Production-blue.png"
+dest_files=[ "res://.import/Production-blue.png-b242573c000b1f39843cd3991a12400a.stex" ]
 
 [params]
 

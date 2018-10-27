@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Entities/Units/Boid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Boid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Entities/Units/Tank.gd" type="Script" id=2]
 [ext_resource path="res://Entities/Units/GFX/tank_blue.png" type="Texture" id=3]
 [ext_resource path="res://Entities/Units/GFX/tank_red.png" type="Texture" id=4]
@@ -13,7 +13,6 @@ position = Vector2( 1.3222, 3.08513 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "physics_material_override", "script", "team_texture", "team_textures" ]
 team_texture = [ ExtResource( 3 ), ExtResource( 4 ) ]
-unit_name = "Tank"
 
 [node name="SelectionVisual" parent="." index="0"]
 visible = false
@@ -21,7 +20,7 @@ visible = false
 [node name="Sprite" parent="." index="1"]
 _sections_unfolded = [ "Offset", "Transform", "texture" ]
 
-[node name="BoidStateMachine" parent="." index="4"]
+[node name="AI" parent="." index="4"]
 editor/display_folded = true
 
 [node name="Health" parent="." index="5" instance=ExtResource( 5 )]

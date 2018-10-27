@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Entities/Structures/Structure.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Structures/GFX/Production-blue.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Structures/GFX/Production-red.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Health.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[node name="Structure" type="RigidBody2D"]
+input_pickable = false
+collision_layer = 12
+collision_mask = 1
+mode = 1
+mass = 1.0
+physics_material_override = null
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "team_texture" ]
+team = 0
+team_texture = [ ExtResource( 2 ), ExtResource( 3 ) ]
+entity_name = "unnamed entity"
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="SelectionVisual" type="Sprite" parent="."]
+
+[node name="Health" parent="." instance=ExtResource( 4 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
+

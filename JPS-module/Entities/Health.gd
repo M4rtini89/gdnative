@@ -1,4 +1,5 @@
 extends Node2D
+class_name Health
 
 export var _max_health = 100
 var _current_health setget set_health

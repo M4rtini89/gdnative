@@ -1,14 +1,8 @@
 tool
-extends "res://Entities/boid.gd"
+extends Boid
 class_name Tank
-export var unit_name = "Tank"
 
-onready var Health = $Health
 onready var WeaponSystem = $Weapon
-
-
-func take_damage(value):
-	Health.take_damage(value)
 
 
 func attack_command(target):
