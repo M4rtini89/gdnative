@@ -1,18 +1,13 @@
 tool
-extends RigidBody2D
+extends Entity
 class_name Boid
 
 #Boid config
 export var MAX_SPEED = 25
 export var MAX_FORCE = 2
 export var ARRIVE_DISTANCE = 10
-export var DRAW_DEBUG = false
+export var DRAW_DEBUG = true
 export var LOS_WIDTH = 5
-
-#Scene Nodes
-onready var sprite = $Sprite
-onready var selection_ring = $SelectionVisual
-onready var state_machine = $BoidStateMachine
 
 #AI
 onready var BT_Idle = $AI/Idle
@@ -26,26 +21,8 @@ var steering = preload("res://AI/SteeringManager.gd").new()
 var close_boids = []
 var close_obstacles = []
 
-#Unit specific variables
-var selected setget set_selected
-export(int, "Team 1", "Team 2", "Team 3", "Team 4") var team = 0 setget set_team
-export(Array, Texture) var team_texture 
-
-func set_team(value):
-	team = value
-	if team_texture and  team < team_texture.size():
-		$Sprite.texture = team_texture[team]
-
-
-func set_selected(value):
-	selected = value
-	selection_ring.visible = selected
-
 func _ready():
-	sprite.texture = team_texture[team]
 	steering.host = self
-	self.selected = false
-	state_machine.start()
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -134,6 +111,7 @@ func wake_up():
 
 
 func _integrate_forces(physics_state):
+	BT_context.set("DRAW_DEBUG", DRAW_DEBUG)
 	BT_context.set("delta", physics_state.step)
 	BT_context.set("physics_state", physics_state)
 	match AI_tree:
@@ -153,9 +131,9 @@ func _integrate_forces(physics_state):
 				AI_tree = "idle"
 
 
-func _draw():
-	if DRAW_DEBUG and  state_machine.current_state.has_method("_draw"):
-		state_machine.current_state._draw()
+#func _draw():
+#	if DRAW_DEBUG and  state_machine.current_state.has_method("_draw"):
+#		state_machine.current_state._draw()
 
 
 func _on_Area2D_body_entered(body):
@@ -171,3 +149,17 @@ func _on_Area2D_body_exited(body):
 		close_obstacles.erase(body)
 	else:
 		close_boids.erase(body)
+
+
+func _draw():
+	var seek_path = BT_context.get("seek_path")
+	if seek_path and seek_path.size() > 0:
+		draw_circle(seek_path[0] - position, 10, Color.blue)
+		draw_line(Vector2(), steering.steering_force*30, Color.red)
+		draw_line(Vector2(), linear_velocity, Color.green)
+
+		if (seek_path.size() > 1):
+			var ray_tangent = (position - seek_path[1]).tangent().normalized()
+			var ray_offset = ray_tangent * LOS_WIDTH
+			draw_line(ray_offset, seek_path[1] + ray_offset - position, Color.brown)
+			draw_line(-ray_offset, seek_path[1] - ray_offset - position, Color.brown)

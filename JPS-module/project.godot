@@ -14,19 +14,37 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/boid.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://Entities/Entity.gd"
+}, {
 "base": "Node",
 "class": "FaceTarget",
 "language": "GDScript",
 "path": "res://AI/BT_Scripts/BT_FaceTarget.gd"
 }, {
-"base": "",
+"base": "Node2D",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Entities/Health.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Structure",
+"language": "GDScript",
+"path": "res://Entities/Structures/Structure.gd"
+}, {
+"base": "RigidBody2D",
 "class": "Tank",
 "language": "GDScript",
 "path": "res://Entities/Units/Tank.gd"
 } ]
 _global_script_class_icons={
 "Boid": "",
+"Entity": "",
 "FaceTarget": "",
+"Health": "",
+"Structure": "",
 "Tank": ""
 }
 

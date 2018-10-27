@@ -141,6 +141,8 @@ func obstacle_raycast():
 func get_active_close_boids():
 	var active_boids = []
 	for boid in actor.close_boids:
-		if boid.state_machine.is_active() and boid.team == actor.team:
+		if boid.AI_tree != "idle" and boid.team == actor.team:
 			active_boids.append(boid)
 	return active_boids
+
+
