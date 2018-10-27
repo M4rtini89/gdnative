@@ -1,7 +1,6 @@
 tool
-extends "res://Units/boid.gd"
+extends "res://Entities/boid.gd"
 class_name Tank
-
 export var unit_name = "Tank"
 
 onready var Health = $Health

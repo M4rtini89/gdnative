@@ -7,7 +7,7 @@ export(PackedScene) var explosion_scene
 
 
 onready var shoot_timer = $CanShootTimer
-onready var Health_component = preload("res://Units/Health.gd")
+onready var Health_component = preload("res://Entities/Health.gd")
 
 
 var can_shoot = true

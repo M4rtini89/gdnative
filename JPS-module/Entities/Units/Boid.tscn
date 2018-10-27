@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Units/boid.gd" type="Script" id=1]
+[ext_resource path="res://Entities/boid.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Units/GFX/selection-ring.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Units/GFX/tank_blue.png" type="Texture" id=3]
 [ext_resource path="res://Entities/Units/State/BoidStateMachine.gd" type="Script" id=4]
@@ -12,8 +12,6 @@
 [ext_resource path="res://AI/BT_PathFollow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://AI/BT_AttackMove.tscn" type="PackedScene" id=11]
 [ext_resource path="res://AI/BT_AttackTarget.tscn" type="PackedScene" id=12]
-
-
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -59,9 +57,10 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Pickable", "Transform", "physics_material_override" ]
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "physics_material_override", "script" ]
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_editor_icon": null
 }
 MAX_SPEED = 25
 MAX_FORCE = 2

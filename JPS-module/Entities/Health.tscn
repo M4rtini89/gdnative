@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Units/Health.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Health.gd" type="Script" id=1]
 [ext_resource path="res://UI/GFX/red_button00.png" type="Texture" id=2]
 [ext_resource path="res://UI/GFX/green_button03.png" type="Texture" id=3]
 
