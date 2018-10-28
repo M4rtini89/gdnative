@@ -107,35 +107,34 @@ SCROLL_SPEED = 150
 ZOOM_SPEED = 5
 ZOOM_LIMIT = Vector2( 0.25, 0.75 )
 
+[node name="SelectionBox" type="NinePatchRect" parent="."]
+modulate = Color( 0.313726, 1, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -159.0
+margin_top = -13.0
+margin_right = -39.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 7 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+script = ExtResource( 8 )
+_sections_unfolded = [ "Patch Margin", "Rect", "Size Flags", "Visibility" ]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="SelectionBox" type="NinePatchRect" parent="CanvasLayer"]
-visible = false
-modulate = Color( 0.313726, 1, 0, 1 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -63.0
-margin_top = 1.0
-margin_right = -25.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 7 )
-patch_margin_left = 3
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-script = ExtResource( 8 )
-_sections_unfolded = [ "Patch Margin", "Rect", "Visibility" ]
 

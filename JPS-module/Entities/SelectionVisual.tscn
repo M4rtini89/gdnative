@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Entities/Units/GFX/selection-ring.png" type="Texture" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+render_priority = 0
+blend_mode = 0
+light_mode = 0
+
+[node name="SelectionVisual" type="Sprite"]
+visible = false
+modulate = Color( 0, 1, 0, 1 )
+show_behind_parent = true
+material = SubResource( 1 )
+position = Vector2( -0.576691, 0.963783 )
+scale = Vector2( 0.0507561, 0.030959 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+

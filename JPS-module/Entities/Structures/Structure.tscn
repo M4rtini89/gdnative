@@ -1,16 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Entities/Structures/Structure.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Structures/GFX/Production-blue.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Structures/GFX/Production-red.png" type="Texture" id=3]
-[ext_resource path="res://Entities/Health.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/SelectionVisual.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/Health.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[node name="Structure" type="RigidBody2D"]
+[node name="Structure" type="RigidBody2D" groups=[
+"structures",
+]]
 input_pickable = false
 collision_layer = 12
 collision_mask = 1
@@ -37,14 +40,20 @@ offset_top_right = Vector2( -16, -16 )
 size = Vector2( 2, 2 )
 grid_size = Vector2( 16, 16 )
 
+[node name="SelectionVisual" parent="." instance=ExtResource( 4 )]
+visible = true
+position = Vector2( 0, 9.00265 )
+scale = Vector2( 0.142526, 0.0703332 )
+
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset" ]
+_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="SelectionVisual" type="Sprite" parent="."]
-visible = false
-
-[node name="Health" parent="." instance=ExtResource( 4 )]
+[node name="Health" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 11 )
+scale = Vector2( 2, 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

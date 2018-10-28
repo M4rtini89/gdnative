@@ -10,14 +10,14 @@
 [ext_resource path="res://AI/BT_AttackMove.tscn" type="PackedScene" id=8]
 [ext_resource path="res://AI/BT_AttackTarget.tscn" type="PackedScene" id=9]
 
-[sub_resource type="PhysicsMaterial" id=1]
+[sub_resource type="PhysicsMaterial" id=2]
 
 friction = 0.1
 rough = false
 bounce = 0.0
 absorbent = false
 
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=1]
 
 render_priority = 0
 blend_mode = 0
@@ -41,7 +41,7 @@ collision_layer = 1
 collision_mask = 15
 mode = 2
 mass = 1.0
-physics_material_override = SubResource( 1 )
+physics_material_override = SubResource( 2 )
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
@@ -69,9 +69,10 @@ DRAW_DEBUG = false
 LOS_WIDTH = 5
 
 [node name="SelectionVisual" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 1, 0, 1 )
 show_behind_parent = true
-material = SubResource( 2 )
+material = SubResource( 1 )
 position = Vector2( -0.576691, 0.963783 )
 scale = Vector2( 0.0507561, 0.030959 )
 texture = ExtResource( 2 )

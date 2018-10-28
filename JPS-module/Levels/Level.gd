@@ -7,6 +7,8 @@ onready var navigation = Navigation.new()
 onready var tilemap : TileMap = $TileMap
 onready var wall_collider = preload("res://Levels/WallCollider.tscn")
 onready var walls = $walls
+onready var units = $Units
+onready var structures = $Structures
 
 var map = PoolByteArray()
 var width
