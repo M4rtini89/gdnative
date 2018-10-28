@@ -12,52 +12,6 @@
 
 using namespace godot;
 
-typedef std::vector<bool> bool_vec_t;
-
-struct MyGrid
-{
-	bool_vec_t data;
-	unsigned width, height;
-
-	MyGrid()
-	{
-	}
-
-	MyGrid(unsigned _width, unsigned _height, PoolByteArray map_data)
-	{
-		width = _width;
-		height = _height;
-		data.resize(width * height);
-		init_map(map_data);
-	}
-
-  private:
-	void init_map(PoolByteArray map_data)
-	{
-		int elements = width * height;
-		if (elements == map_data.size())
-		{
-			for (size_t i = 0; i < elements; i++)
-			{
-				data[i] = map_data[i];
-			}
-		}
-	}
-
-  public:
-	inline bool operator()(unsigned x, unsigned y) const
-	{
-		if (x < width && y < height)
-		{
-			return data[x + width * y] == 1;
-		}
-		else
-		{
-			return false;
-		}
-	}
-};
-
 struct MapGrid
 {
 	MapGrid()
@@ -70,6 +24,32 @@ struct MapGrid
 	~MapGrid()
 	{
 		cleanUp();
+	}
+
+	void setCell(int x, int y, bool blocked)
+	{
+		int index = y * width + x;
+		// Turns a false to a true
+		if(blocked)
+		{
+			gridData[index / 8] &= ~(1UL << (index % 8));
+		}else {
+			gridData[index / 8] |= (1 << index % 8);
+		}
+
+		// gridData[index / 8] |= (1 << index % 8);
+		// gridData[index / 8] |= (1 << (index % 8));
+		// gridData[index / 8] ^= (-bit ^ gridData[index / 8]) & (1 << (index % 8));
+		// clearing 
+		// number &= ~(1UL << n);
+
+		// if (blocked)
+		// {
+		// 	gridData[index / 8] |= (1UL << (index % 8));
+		// }
+		//https://stackoverflow.com/questions/47981/how-do-you-set-clear-and-toggle-a-single-bit
+		// gridData[index / 8] ^= (-bitValue ^ gridData[index / 8]) & (1UL <<(index % 8));
+
 	}
 
 	bool fillGrid(int _width, int _height, PoolByteArray data)
@@ -135,7 +115,6 @@ class Simple : public GodotScript<Reference>
 {
 	GODOT_CLASS(Simple)
 
-	MyGrid mygrid;
 	MapGrid mapgrid;
 	PathFindingAlgorithm *pathFindingAlgorithm;
 
@@ -148,5 +127,6 @@ class Simple : public GodotScript<Reference>
 	void init_map(int width, int height, PoolByteArray map_data);
 	Array find_path(Vector2 from, Vector2 to, unsigned steps);
 	bool check_tile(Vector2 tile_position);
+	void updateTile(Vector2 tile_position, bool blocked);
 };
 #endif

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Entities/BoidData.gd" type="Script" id=1]
+
+[resource]
+
+script = ExtResource( 1 )
+SightRange = null
+MAX_SPEED = 25
+MAX_FORCE = 2
+ARRIVE_DISTANCE = 10
+LOS_WIDTH = 5
+DRAW_DEBUG = true
+

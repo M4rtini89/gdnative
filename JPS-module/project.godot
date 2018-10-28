@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/boid.gd"
 }, {
+"base": "Resource",
+"class": "BoidData",
+"language": "GDScript",
+"path": "res://Entities/BoidData.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://Entities/Entity.gd"
+}, {
+"base": "Resource",
+"class": "EntityData",
+"language": "GDScript",
+"path": "res://Entities/EntityData.gd"
 }, {
 "base": "Node",
 "class": "FaceTarget",
@@ -38,14 +48,28 @@ _global_script_classes=[ {
 "class": "Tank",
 "language": "GDScript",
 "path": "res://Entities/Units/Tank.gd"
+}, {
+"base": "Resource",
+"class": "TankData",
+"language": "GDScript",
+"path": "res://Entities/Units/Data/TankData.gd"
+}, {
+"base": "StaticBody2D",
+"class": "WallCollider",
+"language": "GDScript",
+"path": "res://Levels/WallCollider.gd"
 } ]
 _global_script_class_icons={
 "Boid": "",
+"BoidData": "",
 "Entity": "",
+"EntityData": "",
 "FaceTarget": "",
 "Health": "",
 "Structure": "",
-"Tank": ""
+"Tank": "",
+"TankData": "",
+"WallCollider": ""
 }
 
 [application]

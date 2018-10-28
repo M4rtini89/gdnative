@@ -10,6 +10,7 @@ void Simple::_register_methods()
 	register_method("init_map", &Simple::init_map);
 	register_method("find_path", &Simple::find_path);
 	register_method("check_tile", &Simple::check_tile);
+	register_method("updateTile", &Simple::updateTile);
 }
 
 void Simple::_init()
@@ -18,7 +19,6 @@ void Simple::_init()
 
 void Simple::init_map(int width, int height, PoolByteArray map_data)
 {
-	mygrid = MyGrid(width, height, map_data);
 	mapgrid = MapGrid();
 	mapgrid.fillGrid(width, height, map_data);
 	// pathFindingAlgorithm = new BL_JPS(mapgrid.gridData, width, height);
@@ -44,10 +44,6 @@ Array Simple::find_path(Vector2 from, Vector2 to, unsigned steps)
 	{
 		return_path.append(Vector2(pos.x, pos.y));
 	}
-	// for (auto it = solution.rbegin(); it != solution.rend(); ++it)
-	// {
-	// 	return_path.append(Vector2(it->x, it->y));
-	// }
 
 	return return_path;
 }
@@ -55,4 +51,9 @@ Array Simple::find_path(Vector2 from, Vector2 to, unsigned steps)
 bool Simple::check_tile(Vector2 tile_position)
 {
 	return mapgrid(tile_position.x, tile_position.y);
+}
+
+void Simple::updateTile(Vector2 tile_position, bool blocked)
+{
+	mapgrid.setCell(tile_position.x, tile_position.y, blocked);
 }

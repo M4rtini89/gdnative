@@ -8,7 +8,7 @@
 [ext_resource path="res://Entities/Units/Weapon.gd" type="Script" id=6]
 [ext_resource path="res://Entities/Units/TankShotExplosion.tscn" type="PackedScene" id=7]
 
-[node name="Tank" instance=ExtResource( 1 )]
+[node name="Tank" index="0" instance=ExtResource( 1 )]
 position = Vector2( 1.3222, 3.08513 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "physics_material_override", "script", "team_texture", "team_textures" ]

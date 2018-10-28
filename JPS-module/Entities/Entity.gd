@@ -14,21 +14,21 @@ export(Array, Texture) var team_texture
 export var entity_name = "unnamed entity"
 
 func set_team(value):
-	team = value
-	if team_texture and  team < team_texture.size():
-		$Sprite.texture = team_texture[team]
+    team = value
+    if team_texture and  team < team_texture.size():
+        $Sprite.texture = team_texture[team]
 
 
 func set_selected(value):
-	selected = value
-	selection_ring.visible = selected
+    selected = value
+    selection_ring.visible = selected
 
 
 func take_damage(value):
-	Health.take_damage(value)
+    Health.take_damage(value)
 
 
 func _ready():
-	if team_texture and team_texture.size() >= team - 1:
-		sprite.texture = team_texture[team]
-	self.selected = false
+    if team_texture and team_texture.size() >= team - 1:
+        sprite.texture = team_texture[team]
+    self.selected = false

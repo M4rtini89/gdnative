@@ -33,14 +33,20 @@ _sections_unfolded = [ "Collision", "team_texture" ]
 team = 0
 team_texture = [ ExtResource( 2 ), ExtResource( 3 ) ]
 entity_name = "unnamed entity"
+offset_top_right = Vector2( -16, -16 )
+size = Vector2( 2, 2 )
+grid_size = Vector2( 16, 16 )
 
 [node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset" ]
 
 [node name="SelectionVisual" type="Sprite" parent="."]
+visible = false
 
 [node name="Health" parent="." instance=ExtResource( 4 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-_sections_unfolded = [ "shape" ]
+_sections_unfolded = [ "Transform", "shape" ]
 
